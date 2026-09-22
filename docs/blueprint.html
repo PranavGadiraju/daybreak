@@ -1,0 +1,1036 @@
+<meta charset="utf-8">
+<title>Daybreak Blueprint</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #F4F5F8; --surface: #FFFFFF; --surface-2: #F8F9FB;
+    --ink: #1A2030; --ink-2: #5C667A; --ink-3: #8A93A6;
+    --line: #DCE0E8; --line-2: #EDF0F4;
+    --accent: #D08A22; --accent-text: #9C6410; --accent-soft: #FBEFDA;
+    --good: #2E8B57; --good-soft: #E3F4EA;
+    --warn: #B8541A; --warn-soft: #FCE9DF;
+    --shield: #3C5A99; --shield-soft: #E4EAF7;
+    --bezel: #1A2030; --code-bg: #EAEDF2; --shield-screen: #E6E8EE;
+    --display: "Bricolage Grotesque", "Instrument Sans", system-ui, sans-serif;
+    --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151C; --surface: #1A1E27; --surface-2: #20252F;
+      --ink: #E8EBF1; --ink-2: #A3ABBC; --ink-3: #737C90;
+      --line: #2D3340; --line-2: #242A36;
+      --accent: #EFA53C; --accent-text: #F2B657; --accent-soft: #3A2B12;
+      --good: #5CC48C; --good-soft: #173324;
+      --warn: #F0895A; --warn-soft: #3A2116;
+      --shield: #8FA8E6; --shield-soft: #1E2740;
+      --bezel: #3A414F; --code-bg: #232833; --shield-screen: #2A2F3A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12151C; --surface: #1A1E27; --surface-2: #20252F;
+    --ink: #E8EBF1; --ink-2: #A3ABBC; --ink-3: #737C90;
+    --line: #2D3340; --line-2: #242A36;
+    --accent: #EFA53C; --accent-text: #F2B657; --accent-soft: #3A2B12;
+    --good: #5CC48C; --good-soft: #173324;
+    --warn: #F0895A; --warn-soft: #3A2116;
+    --shield: #8FA8E6; --shield-soft: #1E2740;
+    --bezel: #3A414F; --code-bg: #232833; --shield-screen: #2A2F3A;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: var(--body); font-size: 16px; line-height: 1.55;
+    padding-inline: 16px; padding-block: 0 72px; margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  a { color: var(--accent-text); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* Header */
+  .hero { padding-block: 44px 28px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+  h1 { font-family: var(--display); font-weight: 700; font-size: clamp(40px, 6vw, 64px); line-height: 1; letter-spacing: -0.025em; margin: 12px 0 14px; text-wrap: balance; }
+  h1 small { display: block; font-family: var(--body); font-weight: 400; font-size: 15px; letter-spacing: 0; color: var(--ink-3); margin-top: 10px; }
+  .thesis { font-size: clamp(18px, 2.2vw, 22px); line-height: 1.4; max-width: 34ch; color: var(--ink-2); text-wrap: balance; margin: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .chip { font-family: var(--mono); font-size: 12px; padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink-2); }
+  .chip b { color: var(--ink); font-weight: 500; }
+
+  /* Layout */
+  .layout { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 56px; padding-top: 24px; }
+  .toc { position: sticky; top: env(safe-area-inset-top, 0px); align-self: start; padding-top: 28px; }
+  .toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  .toc a { display: block; padding: 7px 10px; border-radius: 8px; color: var(--ink-2); text-decoration: none; font-size: 14.5px; }
+  .toc a:hover { background: var(--surface); color: var(--ink); }
+  .toc a span { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin-right: 8px; }
+  .toc .toc-note { margin-top: 18px; padding: 10px 12px; font-size: 12.5px; color: var(--ink-3); border-top: 1px solid var(--line); }
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; gap: 8px; }
+    .toc { position: static; padding-top: 16px; }
+    .toc ol { flex-direction: row; overflow-x: auto; padding-bottom: 6px; }
+    .toc a { white-space: nowrap; border: 1px solid var(--line); }
+    .toc .toc-note { display: none; }
+  }
+  main { min-width: 0; }
+  .part { padding-block: 28px 56px; border-bottom: 1px solid var(--line); }
+  .part:last-child { border-bottom: 0; }
+  .part-eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); }
+  h2 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 3.6vw, 40px); line-height: 1.05; letter-spacing: -0.02em; margin: 6px 0 10px; text-wrap: balance; }
+  .lede { font-size: 18px; color: var(--ink-2); max-width: 60ch; margin: 0 0 8px; }
+  h3 { font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; margin: 40px 0 10px; text-wrap: balance; }
+  h4 { font-size: 12.5px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-2); font-weight: 600; margin: 26px 0 8px; }
+  p { margin: 0 0 12px; }
+  .prose { max-width: 66ch; }
+  .prose ul, .prose ol { padding-left: 20px; margin: 0 0 12px; }
+  .prose li { margin-bottom: 6px; }
+  ul.tight { padding-left: 18px; margin: 0; }
+  ul.tight li { margin-bottom: 4px; }
+  code { font-family: var(--mono); font-size: .88em; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+  pre { background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--mono); font-size: 12.5px; line-height: 1.55; margin: 12px 0; }
+  pre code { background: none; padding: 0; font-size: inherit; }
+
+  /* Tables */
+  .table-wrap { overflow-x: auto; margin: 12px 0 8px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+  th { text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  td { padding: 10px 10px; border-bottom: 1px solid var(--line-2); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  td.id, th.id { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); white-space: nowrap; }
+  td.num { font-variant-numeric: tabular-nums; }
+  .mono { font-family: var(--mono); font-size: 13px; }
+
+  /* Objects */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 12px 0; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .card h4 { margin-top: 0; }
+  .card ul { padding-left: 18px; margin: 0; }
+  .card li { margin-bottom: 6px; }
+  .callout { border-left: 3px solid var(--accent); background: var(--surface); padding: 12px 16px; border-radius: 0 10px 10px 0; margin: 16px 0; max-width: 72ch; }
+  .callout p:last-child { margin: 0; }
+  .tag { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 2px 7px; border-radius: 4px; background: var(--accent-soft); color: var(--accent-text); vertical-align: middle; }
+  .tag.sys { background: var(--shield-soft); color: var(--shield); }
+  .tag.ok { background: var(--good-soft); color: var(--good); }
+  .tag.off { background: var(--code-bg); color: var(--ink-3); }
+  .yes { color: var(--good); font-weight: 600; }
+  .no { color: var(--ink-3); }
+  .kv { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; font-size: 14.5px; margin: 8px 0 12px; }
+  .kv dt { color: var(--ink-2); }
+  .kv dd { margin: 0; }
+
+  /* Figures */
+  figure { margin: 22px 0; }
+  figcaption { font-size: 14px; color: var(--ink-2); margin-top: 10px; max-width: 72ch; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; overflow-x: auto; }
+  .fig svg { max-width: 100%; height: auto; display: block; min-width: 640px; }
+  .fig-legend { display: flex; flex-wrap: wrap; gap: 14px 22px; font-size: 13px; color: var(--ink-2); margin-top: 12px; }
+  .fig-legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .sw { width: 22px; height: 12px; border-radius: 3px; border: 1.5px solid currentColor; display: inline-block; }
+  .sw.sys { background: rgba(208,138,34,.25); border-color: var(--accent); }
+  .sw.dec { border-style: dashed; }
+  .sw.grp { background: rgba(120,130,160,.15); border-color: var(--ink-3); }
+
+  /* Wireframes */
+  .wf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 32px 26px; margin-top: 20px; }
+  .wf { margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .wf figcaption { margin: 0; font-size: 13.5px; }
+  .wf figcaption b { display: block; color: var(--ink); font-size: 14px; margin-bottom: 4px; }
+  .wf figcaption ul { padding-left: 16px; margin: 0; }
+  .wf figcaption li { margin-bottom: 3px; }
+  .phone {
+    width: 236px; max-width: 100%; aspect-ratio: 9 / 19.2; margin: 0 auto;
+    border-radius: 30px; border: 5px solid var(--bezel); background: var(--surface);
+    overflow: hidden; position: relative; display: flex; flex-direction: column;
+    font-size: 10px; line-height: 1.3; color: var(--ink); box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  }
+  .ph-status { display: flex; justify-content: space-between; padding: 9px 16px 2px; font-size: 9px; font-weight: 600; color: var(--ink-2); }
+  .ph-body { padding: 8px 13px 12px; display: flex; flex-direction: column; gap: 8px; flex: 1; min-height: 0; }
+  .ph-nav { font-family: var(--display); font-size: 16px; font-weight: 700; letter-spacing: -0.01em; }
+  .ph-nav small { display: block; font-family: var(--body); font-weight: 400; font-size: 9px; color: var(--ink-2); letter-spacing: 0; }
+  .ph-h { font-size: 11.5px; font-weight: 600; }
+  .ph-p { color: var(--ink-2); }
+  .ph-card { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; background: var(--surface-2); display: flex; flex-direction: column; gap: 4px; }
+  .ph-card.shield { border-color: var(--shield); background: var(--shield-soft); }
+  .ph-card.good { border-color: var(--good); background: var(--good-soft); }
+  .ph-big { font-family: var(--display); font-size: 20px; font-weight: 700; line-height: 1.05; }
+  .ph-btn { background: var(--ink); color: var(--surface); border-radius: 9px; padding: 8px; text-align: center; font-weight: 600; }
+  .ph-btn.accent { background: var(--accent); color: #1A1200; }
+  .ph-btn.ghost { background: transparent; color: var(--ink-2); border: 1px solid var(--line); }
+  .ph-btn.disabled { opacity: .38; }
+  .ph-spacer { flex: 1; }
+  .ph-field { border: 1px solid var(--line); border-radius: 7px; padding: 6px 8px; display: flex; justify-content: space-between; align-items: center; gap: 6px; background: var(--surface); }
+  .ph-field.err { border-color: var(--warn); }
+  .ph-field .ck { color: var(--good); font-weight: 700; }
+  .ph-field .wn { color: var(--warn); font-weight: 700; }
+  .ph-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line-2); gap: 8px; }
+  .ph-row:last-child { border-bottom: 0; }
+  .ph-row .v { color: var(--ink-2); white-space: nowrap; }
+  .ph-list { display: flex; flex-direction: column; }
+  .ph-tabs { display: flex; justify-content: space-around; padding: 7px 0 3px; border-top: 1px solid var(--line); font-size: 8.5px; color: var(--ink-3); margin-top: auto; }
+  .ph-tabs .on { color: var(--accent-text); font-weight: 700; }
+  .ph-textarea { border: 1px solid var(--line); border-radius: 7px; padding: 6px 8px; min-height: 46px; color: var(--ink-2); background: var(--surface); }
+  .ph-check { display: flex; flex-direction: column; gap: 3px; font-size: 9.5px; }
+  .ph-check div { display: flex; gap: 6px; align-items: flex-start; }
+  .ph-check .ok { color: var(--good); font-weight: 700; }
+  .ph-check .miss { color: var(--warn); font-weight: 700; }
+  .ph-check .hint { color: var(--warn); }
+  .ph-toggle { width: 26px; height: 15px; border-radius: 999px; background: var(--good); position: relative; flex: none; }
+  .ph-toggle::after { content: ""; position: absolute; top: 2px; right: 2px; width: 11px; height: 11px; border-radius: 50%; background: #fff; }
+  .ph-wheel { display: flex; justify-content: center; gap: 14px; padding: 6px 0; font-variant-numeric: tabular-nums; }
+  .ph-wheel div { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--ink-3); }
+  .ph-wheel b { color: var(--ink); font-size: 16px; background: var(--code-bg); padding: 2px 8px; border-radius: 6px; }
+  .ph-shield { position: absolute; inset: 0; background: var(--shield-screen); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px 18px; gap: 8px; }
+  .ph-shield .icon { width: 44px; height: 44px; border-radius: 12px; background: var(--accent); display: grid; place-items: center; color: #1A1200; font-family: var(--display); font-weight: 700; font-size: 20px; margin-bottom: 6px; }
+  .ph-shield .t { font-size: 13px; font-weight: 700; }
+  .ph-shield .s { color: var(--ink-2); max-width: 170px; }
+  .ph-shield .b { margin-top: 10px; background: var(--ink); color: var(--surface); padding: 7px 24px; border-radius: 999px; font-weight: 600; }
+  .ph-picker { display: flex; flex-direction: column; }
+  .ph-picker .ph-row { padding: 5px 0; }
+  .ph-app { display: flex; align-items: center; gap: 7px; }
+  .ph-app i { width: 16px; height: 16px; border-radius: 4px; background: var(--ink-3); opacity: .5; display: inline-block; }
+  .ph-app .sel { margin-left: auto; color: var(--accent-text); font-weight: 700; }
+  .ph-sheet { border-top: 1px solid var(--line); background: var(--surface); border-radius: 12px 12px 0 0; padding: 8px 12px 10px; margin: 6px -13px -12px; display: flex; flex-direction: column; gap: 6px; }
+  .ph-streak { font-family: var(--mono); font-size: 9px; color: var(--ink-2); }
+
+  /* Sequences */
+  .seq { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; margin: 14px 0; }
+  .seq ol { padding-left: 18px; margin: 6px 0 0; font-size: 14px; }
+  .seq li { margin-bottom: 6px; }
+  .seq .card h4 { margin-bottom: 4px; }
+  .who { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+
+  /* File map */
+  .tree { font-family: var(--mono); font-size: 12.5px; line-height: 1.7; white-space: pre; overflow-x: auto; background: var(--code-bg); padding: 14px 16px; border-radius: 10px; }
+  .tree i { font-style: normal; color: var(--ink-3); }
+
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  @media (max-width: 480px) { .kv { grid-template-columns: 1fr; gap: 2px 0; } .kv dt { margin-top: 8px; } }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Project scope · v0.1 · 21 September 2026</div>
+    <h1>Daybreak<small>Working title. Rename before shipping; nothing in the plan depends on it.</small></h1>
+    <p class="thesis">Your chosen apps stay shielded from a time you set each morning until you have written today's goals and they clear the bar.</p>
+    <div class="chips">
+      <span class="chip"><b>iOS 17+</b> iPhone</span>
+      <span class="chip"><b>SwiftUI</b> · Swift 6.2</span>
+      <span class="chip"><b>Screen Time API</b> FamilyControls · ManagedSettings · DeviceActivity</span>
+      <span class="chip"><b>On-device approval</b> NaturalLanguage</span>
+      <span class="chip"><b>No server</b> no account, no analytics</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Sections">
+      <ol>
+        <li><a href="#prd"><span>01</span>Product requirements</a></li>
+        <li><a href="#flow"><span>02</span>User flow</a></li>
+        <li><a href="#wireframes"><span>03</span>Wireframes</a></li>
+        <li><a href="#architecture"><span>04</span>Tech stack &amp; architecture</a></li>
+      </ol>
+      <div class="toc-note">Screens are numbered S1–S9 and requirements FR-1–FR-15 so the four sections can point at each other.</div>
+    </nav>
+
+    <main>
+      <!-- ===================== 01 PRD ===================== -->
+      <section class="part" id="prd">
+        <div class="part-eyebrow">01 · Product requirements</div>
+        <h2>A shield that asks for something back</h2>
+        <p class="lede">Existing blockers gate the morning reflex with a timer or a friction tap. Daybreak gates it with the one thing a morning actually needs: a written decision about what the day is for.</p>
+
+        <div class="prose">
+          <h3>Problem</h3>
+          <p>The first thing most of us do with a phone is open whatever is loudest. Screen Time limits and third-party blockers interrupt that reflex, but they ask for nothing in return, so the interruption is skipped as fast as it appears. A limit that only measures minutes does not change what the day is spent on.</p>
+          <p>Daybreak turns the shield into a prompt. From a start time you choose, the apps you picked are shielded by iOS itself, not by an app that can be force-quit. The only way through is to write your goals for the day and a short reflection, and to have that writing pass a bar you set in advance. Tap <em>Done reflecting</em> and the apps are yours until tomorrow's start time.</p>
+
+          <h3>Who it is for</h3>
+          <p>You, on your own iPhone. The gate is self-imposed: there is no account, no partner, no parent, and nothing you write leaves the device. Daybreak never even learns which apps you picked; iOS hands it opaque tokens.</p>
+        </div>
+
+        <h3>Goals and non-goals</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h4>Goals for v1</h4>
+            <ul>
+              <li><b>Enforced by the system.</b> From the start time, the picked apps show a shield even if Daybreak is not running, was force-quit, or the phone rebooted.</li>
+              <li><b>One decision a day.</b> Writing 3–5 goals and a reflection takes under five minutes, then the apps stay unlocked until tomorrow.</li>
+              <li><b>An honest bar.</b> Approval is immediate, deterministic, and explains exactly what is missing.</li>
+              <li><b>Private by construction.</b> No network, no server, no analytics; everything lives in the app's own container.</li>
+              <li><b>Keeps the record.</b> Every approved reflection is kept as a journal entry you can reread.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Not in v1</h4>
+            <ul>
+              <li>Parental or family mode, or anything involving a second person.</li>
+              <li>Cross-device sync, cloud backup, or a web view of the journal.</li>
+              <li>AI-graded reflections. The bar is a local rubric; a Claude-powered coach is a phase 2 option, designed for behind the same protocol.</li>
+              <li>Time limits, usage stats, or streak gamification beyond a plain streak count.</li>
+              <li>An evening or end-of-day review.</li>
+              <li>Android, iPad layouts, widgets, or a watch app.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>User stories</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="id">ID</th><th>Story</th><th>Accepted when</th></tr></thead>
+            <tbody>
+              <tr><td class="id">US-1</td><td>As a new user, I grant Screen Time access, pick apps, and set a start time in under two minutes, so the gate exists by tomorrow morning.</td><td>Welcome → authorization → picker → start time → Today with no dead ends. A denied authorization explains why and offers a retry.</td></tr>
+              <tr><td class="id">US-2</td><td>When the start time passes, the apps I picked show a shield instead of opening.</td><td>The shield appears without Daybreak being open, within the system's scheduling window.</td></tr>
+              <tr><td class="id">US-3</td><td>When I hit a shield, I understand what to do next.</td><td>The shield names the app to open and the action to take, in one line.</td></tr>
+              <tr><td class="id">US-4</td><td>I can write three to five goals and a few sentences quickly, and lose nothing if I get interrupted.</td><td>The draft survives leaving the screen or the app.</td></tr>
+              <tr><td class="id">US-5</td><td>The bar tells me exactly what is missing, never just "not good enough".</td><td>Every failed check shows a one-line fix next to the field it concerns.</td></tr>
+              <tr><td class="id">US-6</td><td>Tapping <em>Done reflecting</em> unlocks the apps immediately, and they stay unlocked until tomorrow's start time.</td><td>Shield clears within a second; it does not return until the next scheduled start.</td></tr>
+              <tr><td class="id">US-7</td><td>I can read what I wrote on past days.</td><td>Journal lists entries newest first with goals and reflection; streak shown.</td></tr>
+              <tr><td class="id">US-8</td><td>I can change the apps, the start time, and how strict the bar is later.</td><td>All three editable from Settings; changes take effect the same day.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Functional requirements</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="id">ID</th><th>Area</th><th>Requirement</th><th>Screen</th></tr></thead>
+            <tbody>
+              <tr><td class="id">FR-1</td><td>Authorization</td><td>On first launch, request Screen Time authorization for the individual (self) mode. If denied, explain what the permission does, offer <em>Try again</em>, and link to Settings.</td><td class="id">S1</td></tr>
+              <tr><td class="id">FR-2</td><td>App selection</td><td>Present the system app picker. Persist the selection as opaque tokens (apps, categories, and websites). Daybreak never sees app names.</td><td class="id">S2, S9</td></tr>
+              <tr><td class="id">FR-3</td><td>Schedule</td><td>Let the user choose a daily start time (default 7:00 AM). The start must be earlier than 11:45 PM because the system requires a 15-minute minimum interval.</td><td class="id">S3, S9</td></tr>
+              <tr><td class="id">FR-4</td><td>Shielding</td><td>Register a repeating daily schedule with the system from the start time to 11:59 PM. When the interval starts, the monitor extension applies the shield to the selection unless today is already cleared.</td><td class="id">—</td></tr>
+              <tr><td class="id">FR-5</td><td>Shielding</td><td>If the schedule is saved, or the app is opened, after today's start time and today is not cleared, apply the shield immediately from the app itself.</td><td class="id">S3, S4</td></tr>
+              <tr><td class="id">FR-6</td><td>Shielding</td><td>The system shield shows Daybreak's copy: a title, a one-line instruction, and a single button that closes the shielded app.</td><td class="id">S7</td></tr>
+              <tr><td class="id">FR-7</td><td>Reflection</td><td>The form takes three to five goals (one line each) and a free-text reflection. The draft is kept if the user leaves.</td><td class="id">S5</td></tr>
+              <tr><td class="id">FR-8</td><td>Approval</td><td>Evaluate the rubric on device, live as the user types. <em>Done reflecting</em> is enabled only when every check passes; each failed check shows its fix.</td><td class="id">S5</td></tr>
+              <tr><td class="id">FR-9</td><td>Unlock</td><td><em>Done reflecting</em> saves the journal entry, marks today cleared, and clears the shield immediately. Nothing re-shields until tomorrow's start time.</td><td class="id">S5, S6</td></tr>
+              <tr><td class="id">FR-10</td><td>Unlock</td><td>"Cleared" is keyed to the calendar day in the device's time zone. At the next day's start time the shield returns automatically.</td><td class="id">—</td></tr>
+              <tr><td class="id">FR-11</td><td>Today</td><td>Show one of three phases (before start, shielded, cleared) with the time of the next transition and a single primary action.</td><td class="id">S4, S6</td></tr>
+              <tr><td class="id">FR-12</td><td>Journal</td><td>List approved entries newest first with date, goals, and reflection. Show the current streak of consecutive days.</td><td class="id">S8</td></tr>
+              <tr><td class="id">FR-13</td><td>Settings</td><td>Change apps, start time, and strictness. Turn the schedule off and on. Show version and a plain-language privacy note.</td><td class="id">S9</td></tr>
+              <tr><td class="id">FR-14</td><td>Resilience</td><td>On every launch and return to foreground, re-register the schedule if the system no longer lists it and reconcile the shield with the policy for the current moment.</td><td class="id">—</td></tr>
+              <tr><td class="id">FR-15</td><td>Privacy</td><td>No network calls, no accounts, no analytics. All data lives in the app group container so the extensions can read it.</td><td class="id">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>The bar: what "good enough" means</h3>
+        <div class="prose">
+          <p>Approval is a rubric, not a judgement call. Every check is deterministic, runs on device in milliseconds, and produces a specific fix when it fails. The user picks a strictness once; the thresholds below are what each level enforces.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Check</th><th>Relaxed</th><th>Standard</th><th>Strict</th><th>Fix shown when it fails</th></tr></thead>
+            <tbody>
+              <tr><td>Enough goals (max 5)</td><td class="num">2+</td><td class="num">3+</td><td class="num">3+</td><td>"Add at least three goals."</td></tr>
+              <tr><td>Each goal is specific</td><td class="num">3+ words</td><td class="num">4+ words</td><td class="num">5+ words</td><td>"Goal 2 is too short. Say what done looks like."</td></tr>
+              <tr><td>Goals start with an action</td><td class="no">off</td><td class="yes">on</td><td class="yes">on</td><td>"Start goal 1 with what you'll do: Send…, Finish…, Call…"</td></tr>
+              <tr><td>One goal is measurable (a number, a time, or a deadline)</td><td class="no">off</td><td class="no">off</td><td class="yes">on</td><td>"Give one goal a number or a time."</td></tr>
+              <tr><td>No repeated goals</td><td class="yes">on</td><td class="yes">on</td><td class="yes">on</td><td>"Goals 1 and 3 say the same thing."</td></tr>
+              <tr><td>Reflection length</td><td class="num">25+ words</td><td class="num">40+ words</td><td class="num">80+ words</td><td>"12 more words. What matters most today, and why?"</td></tr>
+              <tr><td>Reads like real writing (varied words, real letters)</td><td class="yes">on</td><td class="yes">on</td><td class="yes">on</td><td>"This doesn't read like sentences yet."</td></tr>
+              <tr><td>Different from yesterday's goals</td><td class="no">off</td><td class="no">off</td><td class="yes">on</td><td>"These match yesterday. What's new today?"</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout">
+          <p><b>How "action" is detected.</b> The goal's first word is compared against a list of common action verbs (finish, send, write, call, run, book, read, review…). If that misses, the NaturalLanguage framework's part-of-speech tagger looks for any verb in the line. Either signal passes. This keeps the check forgiving of phrasing while still rejecting "gym" or "the report" as a goal.</p>
+          <p><b>How "real writing" is detected.</b> At least 40% of the reflection's words must be distinct, and the share of vowels among its letters must sit in the range that real prose occupies (roughly 20–65%). That rejects "asdf asdf asdf" and "blah blah blah" without needing a language model.</p>
+        </div>
+
+        <h3>Non-functional requirements</h3>
+        <div class="grid-2">
+          <div class="card"><h4>Reliability</h4><ul><li>Shield state is held by iOS, so it survives force-quit, reboot, and low-power mode.</li><li>Every app launch reconciles: schedule registered, shield matches policy.</li><li>Extensions are tiny and stateless; they read a handful of defaults and return.</li></ul></div>
+          <div class="card"><h4>Privacy</h4><ul><li>Selection is stored as opaque system tokens; the app cannot enumerate app names.</li><li>No network entitlement is used at all.</li><li>Journal entries are plain JSON in the app group container, deleted with the app.</li></ul></div>
+          <div class="card"><h4>Performance</h4><ul><li>Rubric evaluation completes on every keystroke in well under a frame.</li><li>Shield clears within a second of <em>Done reflecting</em>.</li><li>No timers or background polling; the system wakes the monitor extension.</li></ul></div>
+          <div class="card"><h4>Accessibility</h4><ul><li>Dynamic Type throughout; no fixed-height text containers.</li><li>Every check in the rubric list is a labelled row for VoiceOver.</li><li>Colour never carries a state on its own: pass and fail also differ by icon and text.</li></ul></div>
+        </div>
+
+        <h3>Success measures</h3>
+        <div class="prose"><p>Personal, measured locally, and visible in the Journal. There is no telemetry to report them anywhere else.</p></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Measure</th><th>Target after 2 weeks</th><th>Where it shows</th></tr></thead>
+            <tbody>
+              <tr><td>Days with an approved reflection</td><td class="num">≥ 6 of 7</td><td>Journal streak</td></tr>
+              <tr><td>Median time from first shield hit to unlock</td><td class="num">≤ 8 minutes</td><td>Journal entry timestamps (shield start vs. approved)</td></tr>
+              <tr><td>Rubric attempts before approval</td><td class="num">≤ 2</td><td>Kept with the entry</td></tr>
+              <tr><td>Schedule turned off in Settings</td><td class="num">0 times</td><td>Settings; an honest signal the bar is too high</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Risks and constraints</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Risk</th><th>Why it matters</th><th>Mitigation</th></tr></thead>
+            <tbody>
+              <tr><td>Family Controls needs a paid Apple Developer account</td><td>The entitlement is provisioned by Apple; free personal teams cannot add it, so the app cannot be sideloaded with a free account.</td><td>Build with a paid team from day one. For App Store or TestFlight, request the distribution entitlement from Apple early; approval can take weeks.</td></tr>
+              <tr><td>The Simulator cannot exercise the real gate</td><td>Schedules do not fire, shields do not render, and the app picker shows few or no apps.</td><td>A mock Screen Time gateway drives the full UI in the Simulator and previews; the real gateway is used automatically on a device. Every shielding test is a device test.</td></tr>
+              <tr><td>The user can bypass the gate</td><td>Revoking Screen Time access in Settings, deleting the app, or turning the schedule off all remove the shield.</td><td>Accepted. This is a self-imposed tool; the product is the prompt, not a lock. The schedule toggle asks for confirmation so it is never an accident.</td></tr>
+              <tr><td>Start-of-interval timing</td><td>The system may deliver the interval start a little late, and a schedule saved inside its own window may or may not fire immediately.</td><td>The app applies the shield itself whenever it is open inside the window (FR-5). The extension is the backstop for when it is not.</td></tr>
+              <tr><td>Extension memory budget</td><td>Shield and monitor extensions run under tight memory limits and are killed silently if they exceed them.</td><td>No SwiftUI, no images, no JSON decoding beyond the selection; the shield copy is static strings.</td></tr>
+              <tr><td>Day boundary and time zones</td><td>"Cleared today" must mean the local calendar day, including after travel.</td><td>The day key is computed with the current calendar at evaluation time; the schedule is registered in local time components, which iOS re-evaluates on zone changes.</td></tr>
+              <tr><td>Rubric false negatives</td><td>A real goal phrased unusually could fail the action check and frustrate the user.</td><td>Two independent signals for verbs, a Relaxed level that turns the check off, and fix text that shows the phrasing that passes.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Open questions</h3>
+        <div class="prose">
+          <ul>
+            <li><b>Weekends.</b> Same start time every day in v1. A per-weekday time is a small Settings change later.</li>
+            <li><b>Escape hatch friction.</b> Turning the schedule off currently asks for one confirmation. If the metric above shows it being used, add a delay (for example, takes effect tomorrow).</li>
+            <li><b>Websites.</b> The picker allows web domains; v1 shields whatever is picked without a separate opinion about Safari.</li>
+            <li><b>AI coach.</b> A phase 2 grader could judge whether goals are realistic and specific, at the cost of a network call and an API key on device. Kept behind the rubric protocol so it can be added without touching the UI.</li>
+          </ul>
+        </div>
+
+        <h3>Milestones</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="id">M</th><th>Scope</th><th>Done when</th></tr></thead>
+            <tbody>
+              <tr><td class="id">M1</td><td>Project scaffold, entitlements, app group, authorization, app picker, start time, Today phases</td><td>Onboarding completes on a device and the schedule is listed by the system.</td></tr>
+              <tr><td class="id">M2</td><td>Monitor, shield configuration and shield action extensions; immediate shield from the app</td><td>A picked app shows Daybreak's shield at the start time with the app closed.</td></tr>
+              <tr><td class="id">M3</td><td>Reflection form, rubric with three strictness levels, unlock, journal persistence, unit tests</td><td><em>Done reflecting</em> clears the shield and the entry appears in Journal.</td></tr>
+              <tr><td class="id">M4</td><td>Settings, resilience pass (reboot, foreground reconcile), accessibility pass, TestFlight build</td><td>Two consecutive mornings run end to end without opening Xcode.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <!-- ===================== 02 USER FLOW ===================== -->
+      <section class="part" id="flow">
+        <div class="part-eyebrow">02 · User flow</div>
+        <h2>One setup, then the same loop every morning</h2>
+        <p class="lede">The first-launch row runs once. The loop below it runs daily: iOS raises the shield, you write, the rubric approves, the shield drops until tomorrow.</p>
+
+        <figure>
+          <div class="fig">
+            <svg viewBox="0 0 1000 590" role="img" aria-label="User flow: first launch goes from authorization to picking apps and setting a start time. Every day, iOS applies the shield at the start time, the user hits the shield, opens Daybreak, writes goals and a reflection, the rubric approves, Done reflecting clears the shield for the day, and the loop repeats the next day." font-family="Instrument Sans, system-ui, sans-serif" font-size="12">
+              <defs>
+                <marker id="arr-flow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse">
+                  <path d="M0 0 L8 4 L0 8 z" fill="currentColor"/>
+                </marker>
+              </defs>
+              <g fill="currentColor" font-size="11" letter-spacing="1.5" opacity=".65">
+                <text x="30" y="44">FIRST LAUNCH · ONCE</text>
+                <text x="30" y="226">EVERY DAY</text>
+              </g>
+
+              <!-- Row A: first launch -->
+              <g stroke="currentColor" stroke-width="1.25" fill="none">
+                <rect x="30" y="62" width="140" height="48" rx="8"/>
+                <rect x="230" y="62" width="140" height="48" rx="8" stroke-dasharray="5 4"/>
+                <rect x="430" y="62" width="140" height="48" rx="8"/>
+                <rect x="630" y="62" width="140" height="48" rx="8"/>
+                <rect x="830" y="62" width="140" height="48" rx="8"/>
+                <rect x="230" y="150" width="140" height="48" rx="8"/>
+              </g>
+              <g fill="currentColor" text-anchor="middle">
+                <text x="100" y="82">Launch Daybreak</text><text x="100" y="98">for the first time</text>
+                <text x="300" y="82">Allow Screen</text><text x="300" y="98">Time access?</text>
+                <text x="500" y="82">Pick the apps</text><text x="500" y="98">to shield</text>
+                <text x="700" y="82">Set the daily</text><text x="700" y="98">start time</text>
+                <text x="900" y="82">Today screen:</text><text x="900" y="98">waiting for start</text>
+                <text x="300" y="170">Explain, retry, or</text><text x="300" y="186">open Settings</text>
+              </g>
+
+              <!-- Row B: every day, right to left -->
+              <g stroke-width="1.5" stroke="#D08A22" fill="#D08A22" fill-opacity=".18">
+                <rect x="830" y="240" width="140" height="48" rx="8"/>
+                <rect x="630" y="240" width="140" height="48" rx="8"/>
+                <rect x="230" y="240" width="140" height="48" rx="8"/>
+              </g>
+              <g stroke="currentColor" stroke-width="1.25" fill="none">
+                <rect x="430" y="240" width="140" height="48" rx="8"/>
+                <rect x="30" y="240" width="140" height="48" rx="8"/>
+              </g>
+              <g fill="currentColor" text-anchor="middle">
+                <text x="900" y="260">Start time</text><text x="900" y="276">reached · 7:00</text>
+                <text x="700" y="260">Shield applied</text><text x="700" y="276">to picked apps</text>
+                <text x="500" y="260">You open a</text><text x="500" y="276">shielded app</text>
+                <text x="300" y="260">Shield screen:</text><text x="300" y="276">“Reflect first”</text>
+                <text x="100" y="260">You open</text><text x="100" y="276">Daybreak</text>
+              </g>
+
+              <!-- Row C: reflect and unlock, left to right -->
+              <g stroke="currentColor" stroke-width="1.25" fill="none">
+                <rect x="30" y="388" width="140" height="48" rx="8"/>
+                <rect x="230" y="388" width="140" height="48" rx="8" stroke-dasharray="5 4"/>
+                <rect x="430" y="388" width="140" height="48" rx="8"/>
+                <rect x="830" y="388" width="140" height="48" rx="8"/>
+                <rect x="230" y="478" width="140" height="48" rx="8"/>
+              </g>
+              <g stroke-width="1.5" stroke="#D08A22" fill="#D08A22" fill-opacity=".18">
+                <rect x="630" y="388" width="140" height="48" rx="8"/>
+              </g>
+              <g fill="currentColor" text-anchor="middle">
+                <text x="100" y="408">Write 3–5 goals</text><text x="100" y="424">and a reflection</text>
+                <text x="300" y="408">Passes the</text><text x="300" y="424">rubric?</text>
+                <text x="500" y="408">Tap Done</text><text x="500" y="424">reflecting</text>
+                <text x="700" y="408">Shield cleared</text><text x="700" y="424">for today</text>
+                <text x="900" y="408">Today: unlocked,</text><text x="900" y="424">entry in Journal</text>
+                <text x="300" y="498">Fix what the</text><text x="300" y="514">checks flag</text>
+              </g>
+
+              <!-- Arrows -->
+              <g stroke="currentColor" stroke-width="1.25" fill="none" marker-end="url(#arr-flow)">
+                <path d="M170 86 H230"/>
+                <path d="M370 86 H430"/>
+                <path d="M570 86 H630"/>
+                <path d="M770 86 H830"/>
+                <path d="M290 110 V150"/>
+                <path d="M330 150 V110"/>
+                <path d="M900 110 V240"/>
+                <path d="M830 264 H770"/>
+                <path d="M630 264 H570"/>
+                <path d="M430 264 H370"/>
+                <path d="M230 264 H170"/>
+                <path d="M100 288 V388"/>
+                <path d="M170 412 H230"/>
+                <path d="M370 412 H430"/>
+                <path d="M570 412 H630"/>
+                <path d="M770 412 H830"/>
+                <path d="M900 388 V288"/>
+                <path d="M290 436 V478"/>
+                <path d="M230 502 H100 V436"/>
+              </g>
+              <g fill="currentColor" font-size="11" opacity=".8">
+                <text x="400" y="80" text-anchor="middle">granted</text>
+                <text x="800" y="80" text-anchor="middle">saved</text>
+                <text x="284" y="134" text-anchor="end">denied</text>
+                <text x="336" y="134" text-anchor="start">retry</text>
+                <text x="892" y="180" text-anchor="end">every day, at the start time</text>
+                <text x="800" y="258" text-anchor="middle">monitor</text>
+                <text x="400" y="258" text-anchor="middle">blocked</text>
+                <text x="200" y="258" text-anchor="middle">OK</text>
+                <text x="108" y="342" text-anchor="start">go reflect</text>
+                <text x="400" y="406" text-anchor="middle">yes</text>
+                <text x="600" y="406" text-anchor="middle">clears</text>
+                <text x="892" y="342" text-anchor="end">next day, at the start time</text>
+                <text x="284" y="462" text-anchor="end">no</text>
+                <text x="165" y="496" text-anchor="middle">revise</text>
+              </g>
+
+              <!-- Legend -->
+              <g font-size="11" fill="currentColor">
+                <rect x="30" y="558" width="22" height="12" rx="3" stroke="#D08A22" stroke-width="1.5" fill="#D08A22" fill-opacity=".18"/>
+                <text x="60" y="568">iOS does this (Screen Time)</text>
+                <rect x="250" y="558" width="22" height="12" rx="3" stroke="currentColor" stroke-width="1.25" fill="none"/>
+                <text x="280" y="568">you do this</text>
+                <rect x="390" y="558" width="22" height="12" rx="3" stroke="currentColor" stroke-width="1.25" fill="none" stroke-dasharray="4 3"/>
+                <text x="420" y="568">decision</text>
+              </g>
+            </svg>
+          </div>
+          <figcaption>The shield is applied and cleared by iOS on Daybreak's instructions. Daybreak itself only has to be open for the writing step, which is why force-quitting it changes nothing.</figcaption>
+        </figure>
+
+        <h3>The three phases of Today</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Phase</th><th>When</th><th>Today shows</th><th>Primary action</th><th>What iOS holds</th></tr></thead>
+            <tbody>
+              <tr><td><span class="tag off">Before start</span></td><td>Now is earlier than today's start time and today is not cleared</td><td>"Shield starts at 7:00 AM" with the time remaining</td><td>Reflect early (optional; clears today ahead of time)</td><td>No shield; schedule armed</td></tr>
+              <tr><td><span class="tag sys">Shielded</span></td><td>Now is at or past the start time and today is not cleared</td><td>"Shielded since 7:00 AM", how many apps are waiting</td><td>Write today's goals</td><td>Shield on the selection</td></tr>
+              <tr><td><span class="tag ok">Cleared</span></td><td>The cleared day equals today</td><td>"Unlocked for today", today's goals, when the shield returns</td><td>None; browse the Journal</td><td>No shield; schedule armed for tomorrow</td></tr>
+              <tr><td><span class="tag off">Off</span></td><td>The schedule is turned off in Settings</td><td>"The schedule is off"</td><td>Turn it back on</td><td>No shield; no schedule</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Events and what they change</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Event</th><th>Raised by</th><th>Effect</th></tr></thead>
+            <tbody>
+              <tr><td>Interval starts (start time)</td><td>iOS → monitor extension</td><td>If the cleared day is not today, apply the shield to the stored selection. Otherwise do nothing.</td></tr>
+              <tr><td>Interval ends (11:59 PM)</td><td>iOS → monitor extension</td><td>Clear the shield. A no-op on days that were already cleared.</td></tr>
+              <tr><td><em>Done reflecting</em></td><td>You → app</td><td>Save the entry, set the cleared day to today, clear the shield.</td></tr>
+              <tr><td>App opened or foregrounded</td><td>App</td><td>Re-register the schedule if the system no longer lists it. Inside the window and not cleared: apply the shield. Cleared: make sure it is clear.</td></tr>
+              <tr><td>Start time changed</td><td>You → app</td><td>Restart monitoring with the new schedule, then reconcile immediately.</td></tr>
+              <tr><td>Apps changed</td><td>You → app</td><td>Store the new tokens. If currently shielded, re-apply with the new set.</td></tr>
+              <tr><td>Schedule turned off</td><td>You → app, after confirming</td><td>Stop monitoring and clear the shield.</td></tr>
+              <tr><td>Screen Time access revoked</td><td>iOS</td><td>The shield drops. On next launch the app shows the authorization step again.</td></tr>
+              <tr><td>Midnight</td><td>Time</td><td>Nothing happens at midnight. "Cleared" simply stops matching, and the shield returns at the next start time.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===================== 03 WIREFRAMES ===================== -->
+      <section class="part" id="wireframes">
+        <div class="part-eyebrow">03 · Wireframes</div>
+        <h2>Nine screens, one primary action each</h2>
+        <p class="lede">Three of them belong to iOS (the picker, the shield, and the permission prompt); Daybreak only supplies their words. Content is example data, not a real morning.</p>
+
+        <div class="wf-grid">
+          <!-- S1 -->
+          <figure class="wf">
+            <div class="phone">
+              <div class="ph-status"><span>9:41</span><span>●●● ▮</span></div>
+              <div class="ph-body">
+                <div class="ph-spacer"></div>
+                <div class="ph-nav" style="font-size:22px">Daybreak</div>
+                <div class="ph-p">Pick the apps that pull at you. From a time you choose, they stay shielded until you've written today's goals.</div>
+                <div class="ph-card"><div class="ph-h">1 · Allow Screen Time</div><div class="ph-p">iOS enforces the shield, not this app.</div></div>
+                <div class="ph-card"><div class="ph-h">2 · Pick apps</div><div class="ph-p">Daybreak only receives anonymous tokens.</div></div>
+                <div class="ph-card"><div class="ph-h">3 · Choose a start time</div><div class="ph-p">Default 7:00 AM, every day.</div></div>
+                <div class="ph-spacer"></div>
+                <div class="ph-btn accent">Allow Screen Time access</div>
+                <div class="ph-p" style="text-align:center">Nothing leaves your phone.</div>
+              </div>
+            </div>
+            <figcaption><b>S1 · Welcome and authorization</b>
+              <ul><li>The button triggers the system permission sheet (FR-1).</li><li>If denied: same screen, copy explains, button becomes <em>Try again</em> with an <em>Open Settings</em> link.</li></ul>
+            </figcaption>
+          </figure>
+
+          <!-- S2 -->
+          <figure class="wf">
+            <div class="phone">
+              <div class="ph-status"><span>9:41</span><span>●●● ▮</span></div>
+              <div class="ph-body">
+                <div class="ph-nav">Choose apps<small>System picker, drawn by iOS</small></div>
+                <div class="ph-picker">
+                  <div class="ph-row"><span class="ph-app"><i></i>Social</span><span class="sel">✓</span></div>
+                  <div class="ph-row"><span class="ph-app"><i></i>Instagram</span><span class="sel">✓</span></div>
+                  <div class="ph-row"><span class="ph-app"><i></i>TikTok</span><span class="sel">✓</span></div>
+                  <div class="ph-row"><span class="ph-app"><i></i>YouTube</span><span class="sel">✓</span></div>
+                  <div class="ph-row"><span class="ph-app"><i></i>Reddit</span><span class="sel">✓</span></div>
+                  <div class="ph-row"><span class="ph-app"><i></i>Messages</span></div>
+                  <div class="ph-row"><span class="ph-app"><i></i>Mail</span></div>
+                  <div class="ph-row"><span class="ph-app"><i></i>Safari</span></div>
+                </div>
+                <div class="ph-p">Categories and websites count too.</div>
+                <div class="ph-spacer"></div>
+                <div class="ph-btn">Continue · 5 selected</div>
+              </div>
+            </div>
+            <figcaption><b>S2 · Pick apps</b>
+              <ul><li>The list is the system's <code>FamilyActivityPicker</code>; Daybreak cannot restyle it or read the names (FR-2).</li><li>The count comes from token counts, so it is all Daybreak can show.</li></ul>
+            </figcaption>
+          </figure>
+
+          <!-- S3 -->
+          <figure class="wf">
+            <div class="phone">
+              <div class="ph-status"><span>9:41</span><span>●●● ▮</span></div>
+              <div class="ph-body">
+                <div class="ph-nav">When should the shield start?<small>Every day, until you've reflected</small></div>
+                <div class="ph-wheel">
+                  <div><span>6</span><b>7</b><span>8</span></div>
+                  <div><span>45</span><b>00</b><span>15</span></div>
+                  <div><span>PM</span><b>AM</b><span></span></div>
+                </div>
+                <div class="ph-card shield"><div class="ph-h">7:00 AM → 11:59 PM</div><div class="ph-p">Instagram and 4 more stay shielded until today's reflection is approved. Unlocked time carries to the next morning.</div></div>
+                <div class="ph-p">Must be before 11:45 PM.</div>
+                <div class="ph-spacer"></div>
+                <div class="ph-btn accent">Start the schedule</div>
+              </div>
+            </div>
+            <figcaption><b>S3 · Start time</b>
+              <ul><li>Wheel-style time picker, default 7:00 AM (FR-3).</li><li>Saving registers the schedule and, if it is already past the start time today, shields immediately (FR-5).</li></ul>
+            </figcaption>
+          </figure>
+
+          <!-- S4 -->
+          <figure class="wf">
+            <div class="phone">
+              <div class="ph-status"><span>7:12</span><span>●●● ▮</span></div>
+              <div class="ph-body">
+                <div class="ph-nav">Today<small>Tuesday, 22 September</small></div>
+                <div class="ph-card shield"><div class="ph-p">Shielded since 7:00 AM</div><div class="ph-big">5 apps are waiting on you</div><div class="ph-p">Write today's goals to unlock them for the day.</div></div>
+                <div class="ph-btn accent">Write today's goals</div>
+                <div class="ph-card"><div class="ph-h">Yesterday</div><div class="ph-p">3 goals · 62 words · approved 7:24 AM</div></div>
+                <div class="ph-streak">STREAK · 6 DAYS</div>
+                <div class="ph-tabs"><span class="on">Today</span><span>Journal</span><span>Settings</span></div>
+              </div>
+            </div>
+            <figcaption><b>S4 · Today, shielded</b>
+              <ul><li>The status card is the only element that changes across the three phases (FR-11).</li><li>Before the start time the card reads "Shield starts at 7:00 AM · in 48 min" and the button says <em>Reflect early</em>.</li></ul>
+            </figcaption>
+          </figure>
+
+          <!-- S5 -->
+          <figure class="wf">
+            <div class="phone">
+              <div class="ph-status"><span>7:13</span><span>●●● ▮</span></div>
+              <div class="ph-body">
+                <div class="ph-nav">Today's goals<small>Standard bar · 3 to 5 goals</small></div>
+                <div class="ph-field"><span>Finish the Daybreak PRD before lunch</span><span class="ck">✓</span></div>
+                <div class="ph-field"><span>Run 5k at 6 PM</span><span class="ck">✓</span></div>
+                <div class="ph-field err"><span>gym</span><span class="wn">!</span></div>
+                <div class="ph-p" style="color:var(--warn)">Start goal 3 with what you'll do: Go to…, Lift…</div>
+                <div class="ph-p">+ Add a goal</div>
+                <div class="ph-h">Reflection</div>
+                <div class="ph-textarea">Today matters because the scope doc unblocks the build. I keep opening Instagram before I have a plan, so…</div>
+                <div class="ph-check">
+                  <div><span class="ok">✓</span><span>3 goals</span></div>
+                  <div><span class="miss">•</span><span>Goals start with an action <span class="hint">· goal 3</span></span></div>
+                  <div><span class="miss">•</span><span>40+ words <span class="hint">· 14 more</span></span></div>
+                  <div><span class="ok">✓</span><span>Reads like real writing</span></div>
+                </div>
+                <div class="ph-spacer"></div>
+                <div class="ph-btn disabled">Done reflecting</div>
+              </div>
+            </div>
+            <figcaption><b>S5 · Reflect</b>
+              <ul><li>Checks re-run on every keystroke; each failure names the field and the fix (FR-8).</li><li><em>Done reflecting</em> stays grey until all checks pass, then becomes the amber primary button. Tapping it early lists what is still missing instead of doing nothing.</li><li>The draft is saved as you type (FR-7).</li></ul>
+            </figcaption>
+          </figure>
+
+          <!-- S6 -->
+          <figure class="wf">
+            <div class="phone">
+              <div class="ph-status"><span>7:24</span><span>●●● ▮</span></div>
+              <div class="ph-body">
+                <div class="ph-nav">Today<small>Tuesday, 22 September</small></div>
+                <div class="ph-card good"><div class="ph-p">Approved 7:24 AM</div><div class="ph-big">Unlocked for today</div><div class="ph-p">The shield returns tomorrow at 7:00 AM.</div></div>
+                <div class="ph-h">Today's goals</div>
+                <div class="ph-list">
+                  <div class="ph-row">Finish the Daybreak PRD before lunch</div>
+                  <div class="ph-row">Run 5k at 6 PM</div>
+                  <div class="ph-row">Go to the gym after work</div>
+                </div>
+                <div class="ph-streak">STREAK · 7 DAYS</div>
+                <div class="ph-spacer"></div>
+                <div class="ph-tabs"><span class="on">Today</span><span>Journal</span><span>Settings</span></div>
+              </div>
+            </div>
+            <figcaption><b>S6 · Today, cleared</b>
+              <ul><li>No primary button: the day's decision is made (FR-9).</li><li>Goals stay visible all day as a quiet reminder.</li></ul>
+            </figcaption>
+          </figure>
+
+          <!-- S7 -->
+          <figure class="wf">
+            <div class="phone">
+              <div class="ph-status"><span>7:10</span><span>●●● ▮</span></div>
+              <div class="ph-shield">
+                <div class="icon">D</div>
+                <div class="t">Reflect first</div>
+                <div class="s">Open Daybreak and write today's goals. This app unlocks for the day once they're approved.</div>
+                <div class="b">OK</div>
+              </div>
+            </div>
+            <figcaption><b>S7 · The shield (drawn by iOS)</b>
+              <ul><li>iOS renders this over any picked app; Daybreak's extension supplies icon, title, subtitle, and button label (FR-6).</li><li>The button can only close the app. The system does not let a shield open another app, so the copy names Daybreak explicitly.</li></ul>
+            </figcaption>
+          </figure>
+
+          <!-- S8 -->
+          <figure class="wf">
+            <div class="phone">
+              <div class="ph-status"><span>9:41</span><span>●●● ▮</span></div>
+              <div class="ph-body">
+                <div class="ph-nav">Journal<small>7-day streak · 23 entries</small></div>
+                <div class="ph-list">
+                  <div class="ph-row"><div><div class="ph-h">Tue 22 Sep</div><div class="ph-p">Finish the Daybreak PRD… +2</div></div><span class="v">7:24 AM</span></div>
+                  <div class="ph-row"><div><div class="ph-h">Mon 21 Sep</div><div class="ph-p">Long run, meal prep… +1</div></div><span class="v">8:02 AM</span></div>
+                  <div class="ph-row"><div><div class="ph-h">Sun 20 Sep</div><div class="ph-p">Call Mom, read 30 pages… +2</div></div><span class="v">9:15 AM</span></div>
+                  <div class="ph-row"><div><div class="ph-h">Sat 19 Sep</div><div class="ph-p">Ship the alarm fix… +1</div></div><span class="v">7:40 AM</span></div>
+                  <div class="ph-row"><div><div class="ph-h">Fri 18 Sep</div><div class="ph-p">Draft the essay outline… +2</div></div><span class="v">7:31 AM</span></div>
+                </div>
+                <div class="ph-spacer"></div>
+                <div class="ph-tabs"><span>Today</span><span class="on">Journal</span><span>Settings</span></div>
+              </div>
+            </div>
+            <figcaption><b>S8 · Journal</b>
+              <ul><li>Newest first; tapping a row opens the full goals and reflection (FR-12).</li><li>Streak counts consecutive days with an approved entry, ending today or yesterday.</li></ul>
+            </figcaption>
+          </figure>
+
+          <!-- S9 -->
+          <figure class="wf">
+            <div class="phone">
+              <div class="ph-status"><span>9:41</span><span>●●● ▮</span></div>
+              <div class="ph-body">
+                <div class="ph-nav">Settings</div>
+                <div class="ph-h">Shield</div>
+                <div class="ph-list">
+                  <div class="ph-row"><span>Apps</span><span class="v">5 selected ›</span></div>
+                  <div class="ph-row"><span>Start time</span><span class="v">7:00 AM ›</span></div>
+                  <div class="ph-row"><span>Schedule</span><span class="ph-toggle"></span></div>
+                </div>
+                <div class="ph-h">The bar</div>
+                <div class="ph-list"><div class="ph-row"><span>Strictness</span><span class="v">Standard ›</span></div></div>
+                <div class="ph-p">Standard: 3+ goals of 4+ words that start with an action, and a 40-word reflection.</div>
+                <div class="ph-h">About</div>
+                <div class="ph-list">
+                  <div class="ph-row"><span>Privacy</span><span class="v">Nothing leaves this phone</span></div>
+                  <div class="ph-row"><span>Version</span><span class="v">0.1 (1)</span></div>
+                </div>
+                <div class="ph-spacer"></div>
+                <div class="ph-tabs"><span>Today</span><span>Journal</span><span class="on">Settings</span></div>
+              </div>
+            </div>
+            <figcaption><b>S9 · Settings</b>
+              <ul><li>Apps reopens the system picker; start time and strictness apply the same day (FR-13).</li><li>Turning the schedule off asks for confirmation and clears any active shield.</li></ul>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <!-- ===================== 04 ARCHITECTURE ===================== -->
+      <section class="part" id="architecture">
+        <div class="part-eyebrow">04 · Tech stack &amp; architecture</div>
+        <h2>Four targets, one shared folder, no dependencies</h2>
+        <p class="lede">iOS owns the schedule and the shield. Daybreak owns the decision. Three small extensions carry Daybreak's instructions into the parts of the system the app cannot reach while it is closed.</p>
+
+        <h3>Stack</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Layer</th><th>Choice</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td>Language</td><td>Swift 6.2 in Swift 6 language mode, approachable concurrency on</td><td>Data-race safety at compile time. The app module is main-actor by default, so almost nothing needs an isolation annotation.</td></tr>
+              <tr><td>UI</td><td>SwiftUI, iOS 17.0 and later</td><td>Observation (<code>@Observable</code>), <code>NavigationStack</code>, <code>TabView</code>. iOS 17 covers every iPhone since 2018.</td></tr>
+              <tr><td>Authorization and picker</td><td>FamilyControls</td><td><code>AuthorizationCenter</code> in individual mode, <code>FamilyActivityPicker</code>, <code>FamilyActivitySelection</code> tokens.</td></tr>
+              <tr><td>Shield</td><td>ManagedSettings + ManagedSettingsUI</td><td>A named <code>ManagedSettingsStore</code> holds the shield; the two shield extensions supply copy and the button's behaviour.</td></tr>
+              <tr><td>Schedule</td><td>DeviceActivity</td><td><code>DeviceActivityCenter</code> registers the daily interval; the monitor extension receives its start and end.</td></tr>
+              <tr><td>Rubric</td><td>NaturalLanguage for verbs, plain string math for the rest</td><td>Deterministic, offline, tested without a device.</td></tr>
+              <tr><td>Persistence</td><td>App group <code>UserDefaults</code> for settings, one JSON file for the journal</td><td>Both readable from the extensions. A few hundred small entries do not need SwiftData.</td></tr>
+              <tr><td>Project</td><td>XcodeGen (<code>project.yml</code> → <code>.xcodeproj</code>)</td><td>Four targets with entitlements, app group, and embedding declared in about a hundred readable lines, regenerable at any time.</td></tr>
+              <tr><td>Tests</td><td>Swift Testing</td><td>Parameterized rubric and policy tests run in the Simulator; no device needed.</td></tr>
+              <tr><td>Logging</td><td><code>os.Logger</code></td><td>The only window into the extensions, which cannot be debugged interactively. Readable in Console.app.</td></tr>
+              <tr><td>Third-party code</td><td>None</td><td>Nothing here is worth a dependency.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Targets and how they talk</h3>
+        <figure>
+          <div class="fig">
+            <svg viewBox="0 0 1000 556" role="img" aria-label="Architecture: the Daybreak app writes settings to an app group container, schedules a daily interval with DeviceActivityCenter, and applies or clears the shield in a ManagedSettingsStore. DeviceActivityCenter wakes the monitor extension at interval start and end; the monitor reads the app group and applies the shield. The shield UI drawn by iOS asks the shield configuration extension for its copy and the shield action extension for the button's behaviour." font-family="Instrument Sans, system-ui, sans-serif" font-size="12">
+              <defs>
+                <marker id="arr-arch" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse">
+                  <path d="M0 0 L8 4 L0 8 z" fill="currentColor"/>
+                </marker>
+              </defs>
+
+              <!-- App -->
+              <rect x="30" y="40" width="280" height="332" rx="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              <text x="46" y="66" font-size="14" font-weight="700" fill="currentColor">Daybreak.app</text>
+              <text x="46" y="84" font-size="11" fill="currentColor" opacity=".7">SwiftUI · main actor by default</text>
+              <g fill="none" stroke="currentColor" stroke-width="1" opacity=".55">
+                <rect x="46" y="100" width="248" height="34" rx="6"/>
+                <rect x="46" y="142" width="248" height="46" rx="6"/>
+                <rect x="46" y="196" width="248" height="34" rx="6"/>
+                <rect x="46" y="238" width="248" height="34" rx="6"/>
+                <rect x="46" y="280" width="248" height="34" rx="6"/>
+                <rect x="46" y="322" width="248" height="34" rx="6"/>
+              </g>
+              <g fill="currentColor">
+                <text x="58" y="114" font-weight="600">AppModel</text><text x="58" y="127" font-size="10.5" opacity=".75">@Observable · phases, settings, actions</text>
+                <text x="58" y="156" font-weight="600">Views</text><text x="58" y="169" font-size="10.5" opacity=".75">Onboarding · Today · Reflect</text><text x="58" y="181" font-size="10.5" opacity=".75">Journal · Settings</text>
+                <text x="58" y="210" font-weight="600">ReflectionRubric</text><text x="58" y="223" font-size="10.5" opacity=".75">NaturalLanguage · pure, tested</text>
+                <text x="58" y="252" font-weight="600">ShieldPolicy · ScheduleService</text><text x="58" y="265" font-size="10.5" opacity=".75">phase math · DeviceActivityCenter</text>
+                <text x="58" y="294" font-weight="600">ShieldController</text><text x="58" y="307" font-size="10.5" opacity=".75">ManagedSettingsStore · apply / clear</text>
+                <text x="58" y="336" font-weight="600">JournalStore</text><text x="58" y="349" font-size="10.5" opacity=".75">journal.json in the app group</text>
+              </g>
+
+              <!-- System column -->
+              <g stroke="#D08A22" stroke-width="1.5" fill="#D08A22" fill-opacity=".18">
+                <rect x="390" y="40" width="220" height="130" rx="10"/>
+                <rect x="390" y="210" width="220" height="60" rx="10"/>
+                <rect x="390" y="310" width="220" height="60" rx="10"/>
+              </g>
+              <g fill="currentColor" text-anchor="middle">
+                <text x="500" y="98" font-size="13" font-weight="700">Shield UI</text>
+                <text x="500" y="115" font-size="11" opacity=".75">drawn by iOS over the app</text>
+                <text x="500" y="234" font-size="13" font-weight="700">ManagedSettingsStore</text>
+                <text x="500" y="251" font-size="11" opacity=".75">named “daily” · shield tokens</text>
+                <text x="500" y="334" font-size="13" font-weight="700">DeviceActivityCenter</text>
+                <text x="500" y="351" font-size="11" opacity=".75">07:00 → 23:59, repeats daily</text>
+              </g>
+
+              <!-- Extensions column -->
+              <g fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="690" y="40" width="280" height="60" rx="10"/>
+                <rect x="690" y="110" width="280" height="60" rx="10"/>
+                <rect x="690" y="310" width="280" height="60" rx="10"/>
+              </g>
+              <g fill="currentColor" text-anchor="middle">
+                <text x="830" y="64" font-size="13" font-weight="700">DaybreakShield</text>
+                <text x="830" y="81" font-size="11" opacity=".75">ShieldConfigurationDataSource · copy</text>
+                <text x="830" y="134" font-size="13" font-weight="700">DaybreakShieldAction</text>
+                <text x="830" y="151" font-size="11" opacity=".75">ShieldActionDelegate · button → close</text>
+                <text x="830" y="334" font-size="13" font-weight="700">DaybreakMonitor</text>
+                <text x="830" y="351" font-size="11" opacity=".75">DeviceActivityMonitor · start / end</text>
+              </g>
+
+              <!-- App group band -->
+              <rect x="30" y="430" width="940" height="70" rx="10" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-width="1" stroke-opacity=".35"/>
+              <text x="500" y="458" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">App group container</text>
+              <text x="500" y="477" font-size="11" fill="currentColor" opacity=".75" text-anchor="middle">UserDefaults suite: selection tokens · start time · schedule on/off · strictness · clearedDay · draft   |   journal.json</text>
+
+              <!-- Edges -->
+              <g stroke="currentColor" stroke-width="1.25" fill="none" marker-end="url(#arr-arch)">
+                <path d="M310 240 H390"/>
+                <path d="M310 340 H390"/>
+                <path d="M610 340 H690"/>
+                <path d="M690 325 H650 V240 H610"/>
+                <path d="M500 210 V170"/>
+                <path d="M610 70 H690"/>
+                <path d="M610 140 H690"/>
+                <path d="M170 372 V430"/>
+                <path d="M830 370 V430"/>
+              </g>
+              <g fill="currentColor" font-size="11" opacity=".8">
+                <text x="350" y="233" text-anchor="middle">apply · clear</text>
+                <text x="350" y="333" text-anchor="middle">schedules</text>
+                <text x="650" y="331" text-anchor="middle">interval</text>
+                <text x="650" y="356" text-anchor="middle">start · end</text>
+                <text x="656" y="288" text-anchor="start">applies shield</text>
+                <text x="506" y="193" text-anchor="start">shield set → iOS draws it</text>
+                <text x="650" y="63" text-anchor="middle">asks for copy</text>
+                <text x="650" y="133" text-anchor="middle">button tap</text>
+                <text x="176" y="404" text-anchor="start">writes settings, draft, journal</text>
+                <text x="824" y="404" text-anchor="end">reads selection, clearedDay</text>
+              </g>
+
+              <!-- Legend -->
+              <g font-size="11" fill="currentColor">
+                <rect x="30" y="530" width="22" height="12" rx="3" stroke="#D08A22" stroke-width="1.5" fill="#D08A22" fill-opacity=".18"/>
+                <text x="60" y="540">owned by iOS (Screen Time)</text>
+                <rect x="250" y="530" width="22" height="12" rx="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <text x="280" y="540">code in this project (4 targets)</text>
+                <rect x="490" y="530" width="22" height="12" rx="3" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-opacity=".35"/>
+                <text x="520" y="540">shared storage</text>
+              </g>
+            </svg>
+          </div>
+          <figcaption>The app and the monitor extension both write the same named store, which is what lets the app clear a shield the extension applied. The shield extensions never touch storage: their copy is static and their only decision is to close the app.</figcaption>
+        </figure>
+
+        <h3>What the app group holds</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Key</th><th>Type</th><th>Written by</th><th>Read by</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td class="id">selection</td><td>Data (<code>FamilyActivitySelection</code> as JSON)</td><td>App</td><td>App, Monitor</td><td>Opaque tokens for apps, categories, and web domains.</td></tr>
+              <tr><td class="id">startHour, startMinute</td><td>Int</td><td>App</td><td>App, Monitor</td><td>Daily start time in local time.</td></tr>
+              <tr><td class="id">scheduleEnabled</td><td>Bool</td><td>App</td><td>App, Monitor</td><td>Off means never shield, even if an interval start arrives late.</td></tr>
+              <tr><td class="id">clearedDay</td><td>String, <code>yyyy-MM-dd</code></td><td>App</td><td>App, Monitor</td><td>The local day whose reflection was approved. Equal to today means unlocked.</td></tr>
+              <tr><td class="id">strictness</td><td>String: relaxed, standard, strict</td><td>App</td><td>App</td><td>Which rubric thresholds apply.</td></tr>
+              <tr><td class="id">draft</td><td>Data (<code>ReflectionDraft</code> as JSON)</td><td>App</td><td>App</td><td>Unsaved goals and reflection text, cleared on approval.</td></tr>
+              <tr><td class="id">journal.json</td><td>File: <code>[ReflectionEntry]</code></td><td>App</td><td>App</td><td>Approved entries, newest first: date, goals, reflection, approved-at, strictness, attempts.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>The four sequences that matter</h3>
+        <div class="seq">
+          <div class="card">
+            <h4>A · Save the schedule</h4>
+            <div class="who">you → app → iOS</div>
+            <ol>
+              <li>User saves 7:00 AM (S3 or S9). App validates it is before 11:45 PM.</li>
+              <li>App writes <code>startHour</code>, <code>startMinute</code>, <code>scheduleEnabled = true</code> to the app group.</li>
+              <li>App calls <code>startMonitoring(.daily, during: 07:00→23:59, repeats: true)</code>.</li>
+              <li>App runs the policy for now: inside the window and not cleared → applies the shield itself (FR-5).</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h4>B · Interval starts</h4>
+            <div class="who">iOS → monitor extension</div>
+            <ol>
+              <li>At 7:00 AM iOS launches the monitor and calls <code>intervalDidStart(.daily)</code>.</li>
+              <li>Monitor reads <code>scheduleEnabled</code>, <code>clearedDay</code>, and <code>selection</code>.</li>
+              <li>If enabled and <code>clearedDay ≠ today</code>: sets shield applications, categories, and web domains on the “daily” store.</li>
+              <li>iOS now draws the shield over any picked app until the store is cleared.</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h4>C · Done reflecting</h4>
+            <div class="who">you → app → iOS</div>
+            <ol>
+              <li>Rubric verdict is approved; the button enables.</li>
+              <li>App appends a <code>ReflectionEntry</code> to <code>journal.json</code> and deletes the draft.</li>
+              <li>App writes <code>clearedDay = today</code>, then clears the “daily” store.</li>
+              <li>Today shows the cleared phase. Tomorrow's <code>intervalDidStart</code> sees <code>clearedDay ≠ today</code> and shields again.</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h4>D · App comes to the foreground</h4>
+            <div class="who">app (every launch and return)</div>
+            <ol>
+              <li>Read authorization status; if not approved, show S1.</li>
+              <li>If <code>scheduleEnabled</code> but the system no longer lists the activity, call <code>startMonitoring</code> again (FR-14).</li>
+              <li>Compute the phase for now and reconcile: shielded → apply; cleared or before start → clear.</li>
+              <li>Render Today from the phase. No timers: the view recomputes on foreground and on a one-minute clock while visible.</li>
+            </ol>
+          </div>
+        </div>
+
+        <h3>Module map</h3>
+<div class="tree">Daybreak/
+├── project.yml                     <i>XcodeGen: 4 targets + tests, entitlements, app group</i>
+├── Shared/                         <i>compiled into the app AND the extensions</i>
+│   ├── AppGroup.swift              <i>group id, shared UserDefaults, container URL</i>
+│   ├── DaybreakSettings.swift      <i>TimeOfDay, Strictness, typed defaults accessors</i>
+│   ├── DayKey.swift                <i>"yyyy-MM-dd" for a date in a calendar</i>
+│   ├── ShieldPolicy.swift          <i>pure: phase(now, start, clearedDay, enabled)</i>
+│   ├── ShieldApplier.swift         <i>tokens → ManagedSettingsStore, and clear</i>
+│   └── Names.swift                 <i>DeviceActivityName.daily, store name, logger</i>
+├── Daybreak/                       <i>the app</i>
+│   ├── DaybreakApp.swift           <i>@main, scenePhase → model.refresh()</i>
+│   ├── App/AppModel.swift          <i>@Observable root: status, settings, actions</i>
+│   ├── App/RootView.swift          <i>onboarding vs. tabs</i>
+│   ├── Services/ScreenTimeGateway.swift  <i>protocol + Live (device) + Mock (Simulator, previews)</i>
+│   ├── Services/JournalStore.swift <i>JSON read/write, streak</i>
+│   ├── Rubric/ReflectionRubric.swift <i>checks, verdict, fix text</i>
+│   ├── Onboarding/  Today/  Reflect/  Journal/  Settings/   <i>one folder per screen group</i>
+│   ├── Assets.xcassets · Daybreak.entitlements · Info.plist
+├── DaybreakMonitor/                <i>DeviceActivityMonitor extension</i>
+├── DaybreakShield/                 <i>ShieldConfigurationDataSource extension</i>
+├── DaybreakShieldAction/           <i>ShieldActionDelegate extension</i>
+├── DaybreakTests/                  <i>Swift Testing: rubric, policy, day keys, streak</i>
+├── DaybreakUITests/                <i>XCUITest: the first morning end to end, on the mock gateway</i>
+└── docs/blueprint.html             <i>this page</i></div>
+
+        <h3>Concurrency and isolation</h3>
+        <div class="prose">
+          <ul>
+            <li><b>The app target is main-actor by default.</b> Views, <code>AppModel</code>, and the services are ordinary synchronous code on the main actor. The only <code>await</code> in the app is the authorization request.</li>
+            <li><b>The extensions are nonisolated by default.</b> iOS calls <code>intervalDidStart</code> and the shield callbacks on its own threads; the overrides must match the superclass's isolation, so those targets do not opt into main-actor default.</li>
+            <li><b>Shared types are explicitly <code>nonisolated</code></b> so they mean the same thing in both kinds of target. They are value types with no shared state; the only reference type they touch is <code>UserDefaults</code>, which is thread-safe.</li>
+            <li><b>No background work.</b> The rubric runs in microseconds, the journal is a few kilobytes, and the schedule is the system's problem. There is nothing to move off the main thread.</li>
+          </ul>
+        </div>
+
+        <h3>Setting up the build</h3>
+        <div class="prose">
+          <ol>
+            <li>Generate the project and open it:
+              <pre><code>xcodegen generate
+open Daybreak.xcodeproj</code></pre></li>
+            <li>Pick your paid developer team under Signing &amp; Capabilities for all four targets, or set <code>DEVELOPMENT_TEAM</code> once in <code>project.yml</code> and regenerate.</li>
+            <li>With automatic signing, Xcode registers the Family Controls (development) capability and the app group on each App ID. If it refuses, add both at developer.apple.com under Identifiers, then retry.</li>
+            <li>Run on a physical iPhone on iOS 17 or later and accept the Screen Time prompt. The Simulator runs the whole UI through the mock gateway but cannot shield anything.</li>
+            <li>First device test: set the start time two minutes ahead, background the app, wait, open a picked app and expect S7. Open Daybreak, reflect, tap <em>Done reflecting</em>, and expect the app to open. Reboot and expect it to stay open. Next morning, expect the shield back.</li>
+            <li>Before TestFlight or the App Store, request the Family Controls distribution entitlement from Apple. Development builds do not need it; distribution builds will not sign without it.</li>
+          </ol>
+        </div>
+
+        <h3>Testing strategy</h3>
+        <div class="grid-2">
+          <div class="card"><h4>Automated, in the Simulator</h4><ul><li>Rubric: every check at every strictness, parameterized over passing and failing drafts, including gibberish and duplicate goals.</li><li>Policy: the four phases across the start time, the day boundary, a cleared yesterday, and the schedule being off.</li><li>Day keys and streaks across month ends and time-zone changes.</li><li>One UI test walks the first morning end to end on the mock gateway: onboarding, an empty form rejected with its fix, goals and reflection typed, the day unlocked, the entry in the Journal.</li></ul></div>
+          <div class="card"><h4>Manual, on a device</h4><ul><li>The six-step script above, plus: change the start time while shielded, change apps while shielded, turn the schedule off and on.</li><li>Revoke Screen Time access in Settings and confirm the app recovers to S1.</li><li>Watch the monitor extension in Console.app filtered by the app's subsystem.</li></ul></div>
+        </div>
+
+        <h3>Phase 2 candidates</h3>
+        <div class="prose">
+          <ul>
+            <li><b>Claude-graded reflections.</b> A second <code>ReflectionApprover</code> that sends the draft to Claude with the rubric as instructions and returns the same verdict shape. Needs an API key in the Keychain and a network entitlement; the local rubric stays as the offline fallback.</li>
+            <li><b>Evening check-in.</b> A second, optional interval that asks which goals were met, feeding a weekly view in the Journal.</li>
+            <li><b>Per-weekday start times</b> and a "not on weekends" switch.</li>
+            <li><b>Lock Screen widget</b> showing the phase and the countdown, and an App Intent so "Start reflecting" works from Siri and Shortcuts.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>

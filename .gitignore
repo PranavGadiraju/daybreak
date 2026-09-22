@@ -1,0 +1,9 @@
+# Xcode
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+DerivedData/
+build/
+.DS_Store
+# The project file is generated from project.yml; keep it committed for convenience, regenerate with `xcodegen generate`.
+# Claude desktop session tooling
+.claude/

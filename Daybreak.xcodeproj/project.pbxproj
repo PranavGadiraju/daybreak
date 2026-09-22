@@ -1,0 +1,1045 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05C5B917FE4AD037752144BE /* ScreenTimeGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDF31EA4A1325365BEFB300 /* ScreenTimeGateway.swift */; };
+		086353F2B4B909D77D769AFF /* ShieldConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D6E526B5F0DC8C96FC7F79 /* ShieldConfigurationExtension.swift */; };
+		0A932749F7DEDE2E5CFAA1A8 /* DeviceActivityMonitorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD296F4E1028DC658FE6CEB6 /* DeviceActivityMonitorExtension.swift */; };
+		0ECEF75B307F4CD46B86F47A /* ShieldPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58ADE53A39918D6B2853223C /* ShieldPolicy.swift */; };
+		10ECC6AC420AB4BF516981D2 /* ShieldPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58ADE53A39918D6B2853223C /* ShieldPolicy.swift */; };
+		1C07EFFCB3D2B11D63EBF7EB /* DaybreakShield.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 74A8FE8AEF9B68D844971811 /* DaybreakShield.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1CF91FB52D694F032A488BA7 /* ShieldPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B987F497DAE66B3EB8C601CC /* ShieldPolicyTests.swift */; };
+		1FD14323E16DD8E82C6D21A6 /* DaybreakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648AE743FC0C4390E725B29 /* DaybreakApp.swift */; };
+		2DF840493A2E5890576D997F /* DaybreakUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08299A008E67290623FF3086 /* DaybreakUITests.swift */; };
+		31C6894A9B7586E201EF6FBB /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4431C688DF44E0B4A492C9 /* AppModel.swift */; };
+		325E2F3D93BFD9AF3549CE84 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8202D237CF1D4CF49E46A7AD /* TodayView.swift */; };
+		34C40F9D5E850079BE3530A0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7749A9E6E27887269EAEB1 /* SettingsView.swift */; };
+		34CBE2FE2330AA3A95359D44 /* DaybreakSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC338EC1F796FB6C289A9AF9 /* DaybreakSettings.swift */; };
+		3B57FC1B05AE884D8D44BB0D /* DaybreakShieldAction.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5718A3A69CE856191F76CD62 /* DaybreakShieldAction.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3B9E95E57CD25B839A2A33CB /* Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97539A2B3B7C3D9161AE14C8 /* Names.swift */; };
+		467DCF563903750AAD64B56B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C698FA3960EFF56EE8361303 /* WelcomeView.swift */; };
+		61E1856751E2094372516C6E /* Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97539A2B3B7C3D9161AE14C8 /* Names.swift */; };
+		64471290D62A6734A55F26AB /* DayKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4491EBF264D43BE91D23E /* DayKey.swift */; };
+		66CD54AA4972219BBFE785B3 /* PickAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA6B76798B117515A089F56 /* PickAppsView.swift */; };
+		68B613E79239D083B86DD519 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A717FFBEC411DC23DE998ACE /* RootView.swift */; };
+		68F9728106C1B9DB1C19A1D4 /* ShieldApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC47974A73F1ABE956489226 /* ShieldApplier.swift */; };
+		6C97FEDA21341AF3BF926939 /* ShieldApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC47974A73F1ABE956489226 /* ShieldApplier.swift */; };
+		7698CC469B8C8B7AD190C731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49B363E442BF7DD562BFB66 /* Assets.xcassets */; };
+		791E1BFEE449FE9A4149354A /* ShieldPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58ADE53A39918D6B2853223C /* ShieldPolicy.swift */; };
+		7C61056A4C7AC4BC72CC80C8 /* DaybreakSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC338EC1F796FB6C289A9AF9 /* DaybreakSettings.swift */; };
+		8285C2B86A21F60F0D3D707E /* JournalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66647C39D6C2D574AF5D50B1 /* JournalStore.swift */; };
+		84D57F425E0B29D7FE54C2DC /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CFB7B59CC75ED1B3FEC7C9 /* OnboardingFlow.swift */; };
+		8C32AE23F588E168CD09D087 /* ReflectionRubric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFFE3FE75F24CF99C99F828 /* ReflectionRubric.swift */; };
+		8D700FF6997DDA52FCB8420D /* Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97539A2B3B7C3D9161AE14C8 /* Names.swift */; };
+		8E2F0513F70D5C1CDFD67F52 /* DayKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4491EBF264D43BE91D23E /* DayKey.swift */; };
+		8FEEA45FB11F397616946B58 /* ReflectionRubricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D83CA3DED1EC6D56B3BC4 /* ReflectionRubricTests.swift */; };
+		91BF453845FF7E8E4FBA0F6C /* JournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFE9971A002C030A7AE5B20 /* JournalTests.swift */; };
+		A049E45DE7C9622693CD5C8C /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B23327B2A27499C59476CE /* JournalView.swift */; };
+		A14D8ECD74B2FB5DEF856204 /* ReflectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA99B2CD5EF00623E35305E6 /* ReflectView.swift */; };
+		A1D71BB6C55AFA90C380D63B /* DayKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4491EBF264D43BE91D23E /* DayKey.swift */; };
+		A9E2E038270BC2D294BB3FA7 /* DaybreakMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EBD6643358854E34AEE4579B /* DaybreakMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AC10DB457D7C0A93A4041E8E /* ShieldActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B650E0280B649A6A55471D /* ShieldActionExtension.swift */; };
+		B88947C1C00AF8380AFAEF0B /* DayKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4491EBF264D43BE91D23E /* DayKey.swift */; };
+		BAEBEFE9D99159C135AA02BE /* Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97539A2B3B7C3D9161AE14C8 /* Names.swift */; };
+		BC05E83FA8C2D5BC96893F13 /* ShieldPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58ADE53A39918D6B2853223C /* ShieldPolicy.swift */; };
+		CDFED3B39BDFC7A0B77D6962 /* DaybreakSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC338EC1F796FB6C289A9AF9 /* DaybreakSettings.swift */; };
+		D7F67EC40B1652A24A87248A /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC050E03D66E6BB66F82F92 /* AppGroup.swift */; };
+		DA44938A38C0213A199197D6 /* DaybreakSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC338EC1F796FB6C289A9AF9 /* DaybreakSettings.swift */; };
+		DA525DB4FD82F0D7195DEE13 /* ShieldApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC47974A73F1ABE956489226 /* ShieldApplier.swift */; };
+		DACF102776A93882CC54D078 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC050E03D66E6BB66F82F92 /* AppGroup.swift */; };
+		E566E57E20424458361B9F8B /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83470BB7FEFE10166D13155 /* Formatting.swift */; };
+		EF2F0C6E34D0FFE5CDF6C9F5 /* ShieldApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC47974A73F1ABE956489226 /* ShieldApplier.swift */; };
+		EF65C1CDDBF57D024D733DE9 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC050E03D66E6BB66F82F92 /* AppGroup.swift */; };
+		F506C7287DBF560D20783C14 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC050E03D66E6BB66F82F92 /* AppGroup.swift */; };
+		FE7C1FEFF603C52E0356401A /* StartTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF152426DB23D925FB50585 /* StartTimeView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		229BBA4A0D725965BA632296 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11E6449B4CE4665FF45A0413 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C261E455EA7AFEDC88D157A0;
+			remoteInfo = Daybreak;
+		};
+		60742A070C929C58D3ECF16F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11E6449B4CE4665FF45A0413 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA1D4DF703873E82AB0A06CD;
+			remoteInfo = DaybreakShield;
+		};
+		93BEA8A4483FFBF5C26AD682 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11E6449B4CE4665FF45A0413 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 423B75BBFA507876D2E4595E;
+			remoteInfo = DaybreakShieldAction;
+		};
+		E559D21E47471DB0FAE8E124 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11E6449B4CE4665FF45A0413 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4919B9695CD854A85EC42326;
+			remoteInfo = DaybreakMonitor;
+		};
+		FDB45903D5C11085F4B604E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11E6449B4CE4665FF45A0413 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C261E455EA7AFEDC88D157A0;
+			remoteInfo = Daybreak;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		763E31F8F08B5CA79A79C60D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A9E2E038270BC2D294BB3FA7 /* DaybreakMonitor.appex in Embed Foundation Extensions */,
+				1C07EFFCB3D2B11D63EBF7EB /* DaybreakShield.appex in Embed Foundation Extensions */,
+				3B57FC1B05AE884D8D44BB0D /* DaybreakShieldAction.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		08299A008E67290623FF3086 /* DaybreakUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaybreakUITests.swift; sourceTree = "<group>"; };
+		13B4491EBF264D43BE91D23E /* DayKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayKey.swift; sourceTree = "<group>"; };
+		1FF152426DB23D925FB50585 /* StartTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimeView.swift; sourceTree = "<group>"; };
+		24D6E526B5F0DC8C96FC7F79 /* ShieldConfigurationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldConfigurationExtension.swift; sourceTree = "<group>"; };
+		386D83CA3DED1EC6D56B3BC4 /* ReflectionRubricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionRubricTests.swift; sourceTree = "<group>"; };
+		3AA6B76798B117515A089F56 /* PickAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAppsView.swift; sourceTree = "<group>"; };
+		4CFE9971A002C030A7AE5B20 /* JournalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTests.swift; sourceTree = "<group>"; };
+		4FFFE3FE75F24CF99C99F828 /* ReflectionRubric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionRubric.swift; sourceTree = "<group>"; };
+		5718A3A69CE856191F76CD62 /* DaybreakShieldAction.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = DaybreakShieldAction.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		58ADE53A39918D6B2853223C /* ShieldPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldPolicy.swift; sourceTree = "<group>"; };
+		66647C39D6C2D574AF5D50B1 /* JournalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalStore.swift; sourceTree = "<group>"; };
+		74A8FE8AEF9B68D844971811 /* DaybreakShield.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = DaybreakShield.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8202D237CF1D4CF49E46A7AD /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		97539A2B3B7C3D9161AE14C8 /* Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Names.swift; sourceTree = "<group>"; };
+		9E7749A9E6E27887269EAEB1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A717FFBEC411DC23DE998ACE /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		AC4431C688DF44E0B4A492C9 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		B103E8696A07B73020F0A4E6 /* DaybreakUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DaybreakUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B83470BB7FEFE10166D13155 /* Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatting.swift; sourceTree = "<group>"; };
+		B987F497DAE66B3EB8C601CC /* ShieldPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldPolicyTests.swift; sourceTree = "<group>"; };
+		BA99B2CD5EF00623E35305E6 /* ReflectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectView.swift; sourceTree = "<group>"; };
+		C14E88A016A8E80548E9F161 /* DaybreakTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DaybreakTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C698FA3960EFF56EE8361303 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		CD296F4E1028DC658FE6CEB6 /* DeviceActivityMonitorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityMonitorExtension.swift; sourceTree = "<group>"; };
+		D3B23327B2A27499C59476CE /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
+		D4B650E0280B649A6A55471D /* ShieldActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldActionExtension.swift; sourceTree = "<group>"; };
+		DC338EC1F796FB6C289A9AF9 /* DaybreakSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaybreakSettings.swift; sourceTree = "<group>"; };
+		E49B363E442BF7DD562BFB66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EBD6643358854E34AEE4579B /* DaybreakMonitor.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = DaybreakMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECDF31EA4A1325365BEFB300 /* ScreenTimeGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeGateway.swift; sourceTree = "<group>"; };
+		F2CFB7B59CC75ED1B3FEC7C9 /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
+		F5A017B066624F43A65BC682 /* Daybreak.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Daybreak.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F648AE743FC0C4390E725B29 /* DaybreakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaybreakApp.swift; sourceTree = "<group>"; };
+		FC47974A73F1ABE956489226 /* ShieldApplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldApplier.swift; sourceTree = "<group>"; };
+		FCC050E03D66E6BB66F82F92 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		13692A85D770774532A92C60 /* DaybreakTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CFE9971A002C030A7AE5B20 /* JournalTests.swift */,
+				386D83CA3DED1EC6D56B3BC4 /* ReflectionRubricTests.swift */,
+				B987F497DAE66B3EB8C601CC /* ShieldPolicyTests.swift */,
+			);
+			path = DaybreakTests;
+			sourceTree = "<group>";
+		};
+		1A70462615B103DA1B409114 /* DaybreakMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				CD296F4E1028DC658FE6CEB6 /* DeviceActivityMonitorExtension.swift */,
+			);
+			path = DaybreakMonitor;
+			sourceTree = "<group>";
+		};
+		207A11CDAA861657AC63FF4B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9E7749A9E6E27887269EAEB1 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		3C25AA81C48D8B9615E859EE /* DaybreakShieldAction */ = {
+			isa = PBXGroup;
+			children = (
+				D4B650E0280B649A6A55471D /* ShieldActionExtension.swift */,
+			);
+			path = DaybreakShieldAction;
+			sourceTree = "<group>";
+		};
+		50C086E38EB2C2B7176067CD /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				D3B23327B2A27499C59476CE /* JournalView.swift */,
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		51A7182A6515A45AC4D55A32 /* Daybreak */ = {
+			isa = PBXGroup;
+			children = (
+				A5555922A85E2ADBF707A1ED /* App */,
+				50C086E38EB2C2B7176067CD /* Journal */,
+				755A3614F11D0895D40CF8EA /* Onboarding */,
+				6093DE34FDB304CFC141DDE0 /* Reflect */,
+				684942B0C26E2AA23CDE8EBE /* Rubric */,
+				703F6F7C6CD5E90FA158468A /* Services */,
+				207A11CDAA861657AC63FF4B /* Settings */,
+				F9E490CB5116B3EF075B6203 /* Today */,
+				E49B363E442BF7DD562BFB66 /* Assets.xcassets */,
+				F648AE743FC0C4390E725B29 /* DaybreakApp.swift */,
+			);
+			path = Daybreak;
+			sourceTree = "<group>";
+		};
+		6093DE34FDB304CFC141DDE0 /* Reflect */ = {
+			isa = PBXGroup;
+			children = (
+				BA99B2CD5EF00623E35305E6 /* ReflectView.swift */,
+			);
+			path = Reflect;
+			sourceTree = "<group>";
+		};
+		684942B0C26E2AA23CDE8EBE /* Rubric */ = {
+			isa = PBXGroup;
+			children = (
+				4FFFE3FE75F24CF99C99F828 /* ReflectionRubric.swift */,
+			);
+			path = Rubric;
+			sourceTree = "<group>";
+		};
+		703F6F7C6CD5E90FA158468A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				66647C39D6C2D574AF5D50B1 /* JournalStore.swift */,
+				ECDF31EA4A1325365BEFB300 /* ScreenTimeGateway.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		755A3614F11D0895D40CF8EA /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F2CFB7B59CC75ED1B3FEC7C9 /* OnboardingFlow.swift */,
+				3AA6B76798B117515A089F56 /* PickAppsView.swift */,
+				1FF152426DB23D925FB50585 /* StartTimeView.swift */,
+				C698FA3960EFF56EE8361303 /* WelcomeView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		8548C02D3DAB04A2533720CA = {
+			isa = PBXGroup;
+			children = (
+				51A7182A6515A45AC4D55A32 /* Daybreak */,
+				1A70462615B103DA1B409114 /* DaybreakMonitor */,
+				EEAFE8994B5DFC4BF817F275 /* DaybreakShield */,
+				3C25AA81C48D8B9615E859EE /* DaybreakShieldAction */,
+				13692A85D770774532A92C60 /* DaybreakTests */,
+				BB9CCE917B06024C87881FB6 /* DaybreakUITests */,
+				EEED4BDF162AD8DEEF2832F4 /* Shared */,
+				9FB5F5ACE58EA1DACBE9AD91 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9FB5F5ACE58EA1DACBE9AD91 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5A017B066624F43A65BC682 /* Daybreak.app */,
+				EBD6643358854E34AEE4579B /* DaybreakMonitor.appex */,
+				74A8FE8AEF9B68D844971811 /* DaybreakShield.appex */,
+				5718A3A69CE856191F76CD62 /* DaybreakShieldAction.appex */,
+				C14E88A016A8E80548E9F161 /* DaybreakTests.xctest */,
+				B103E8696A07B73020F0A4E6 /* DaybreakUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5555922A85E2ADBF707A1ED /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AC4431C688DF44E0B4A492C9 /* AppModel.swift */,
+				B83470BB7FEFE10166D13155 /* Formatting.swift */,
+				A717FFBEC411DC23DE998ACE /* RootView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BB9CCE917B06024C87881FB6 /* DaybreakUITests */ = {
+			isa = PBXGroup;
+			children = (
+				08299A008E67290623FF3086 /* DaybreakUITests.swift */,
+			);
+			path = DaybreakUITests;
+			sourceTree = "<group>";
+		};
+		EEAFE8994B5DFC4BF817F275 /* DaybreakShield */ = {
+			isa = PBXGroup;
+			children = (
+				24D6E526B5F0DC8C96FC7F79 /* ShieldConfigurationExtension.swift */,
+			);
+			path = DaybreakShield;
+			sourceTree = "<group>";
+		};
+		EEED4BDF162AD8DEEF2832F4 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				FCC050E03D66E6BB66F82F92 /* AppGroup.swift */,
+				DC338EC1F796FB6C289A9AF9 /* DaybreakSettings.swift */,
+				13B4491EBF264D43BE91D23E /* DayKey.swift */,
+				97539A2B3B7C3D9161AE14C8 /* Names.swift */,
+				FC47974A73F1ABE956489226 /* ShieldApplier.swift */,
+				58ADE53A39918D6B2853223C /* ShieldPolicy.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		F9E490CB5116B3EF075B6203 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				8202D237CF1D4CF49E46A7AD /* TodayView.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		30A0A24E5308A8265D9517DA /* DaybreakTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FD67BF6D804075B5EDA8A4C /* Build configuration list for PBXNativeTarget "DaybreakTests" */;
+			buildPhases = (
+				13F22D8358A3304C7C6F8CB3 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05D8AB0ED78FFE46777DFE7F /* PBXTargetDependency */,
+			);
+			name = DaybreakTests;
+			packageProductDependencies = (
+			);
+			productName = DaybreakTests;
+			productReference = C14E88A016A8E80548E9F161 /* DaybreakTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		423B75BBFA507876D2E4595E /* DaybreakShieldAction */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 640FAD1EB722719C0706E28D /* Build configuration list for PBXNativeTarget "DaybreakShieldAction" */;
+			buildPhases = (
+				2B0E4474F5DB0EED878913DE /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DaybreakShieldAction;
+			packageProductDependencies = (
+			);
+			productName = DaybreakShieldAction;
+			productReference = 5718A3A69CE856191F76CD62 /* DaybreakShieldAction.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		4919B9695CD854A85EC42326 /* DaybreakMonitor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31FFFD352B3FB305995FEB46 /* Build configuration list for PBXNativeTarget "DaybreakMonitor" */;
+			buildPhases = (
+				DC823855E9265E09258DC719 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DaybreakMonitor;
+			packageProductDependencies = (
+			);
+			productName = DaybreakMonitor;
+			productReference = EBD6643358854E34AEE4579B /* DaybreakMonitor.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		C261E455EA7AFEDC88D157A0 /* Daybreak */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBD3117098F429C7764FD36A /* Build configuration list for PBXNativeTarget "Daybreak" */;
+			buildPhases = (
+				0862A18EA28155C099F5B854 /* Sources */,
+				73A14E2D358EDDFEF985F5A2 /* Resources */,
+				763E31F8F08B5CA79A79C60D /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A4614A97C22789A68A4143D /* PBXTargetDependency */,
+				231F12ECE0F485781F7DC2E0 /* PBXTargetDependency */,
+				709E6DA62015FA868E0A89DB /* PBXTargetDependency */,
+			);
+			name = Daybreak;
+			packageProductDependencies = (
+			);
+			productName = Daybreak;
+			productReference = F5A017B066624F43A65BC682 /* Daybreak.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EA1D4DF703873E82AB0A06CD /* DaybreakShield */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6507E1FC4B2148CC4B0197B /* Build configuration list for PBXNativeTarget "DaybreakShield" */;
+			buildPhases = (
+				3E37D0BD4F9F5877F2D573B3 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DaybreakShield;
+			packageProductDependencies = (
+			);
+			productName = DaybreakShield;
+			productReference = 74A8FE8AEF9B68D844971811 /* DaybreakShield.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		F72BFE89E20A0E43179FEC9D /* DaybreakUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9FE71CA79244E5049AFAA82 /* Build configuration list for PBXNativeTarget "DaybreakUITests" */;
+			buildPhases = (
+				9CB7565C51682862B9CC38A7 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E317F9EEC09DD2F0523C46B0 /* PBXTargetDependency */,
+			);
+			name = DaybreakUITests;
+			packageProductDependencies = (
+			);
+			productName = DaybreakUITests;
+			productReference = B103E8696A07B73020F0A4E6 /* DaybreakUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		11E6449B4CE4665FF45A0413 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					30A0A24E5308A8265D9517DA = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					423B75BBFA507876D2E4595E = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					4919B9695CD854A85EC42326 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					C261E455EA7AFEDC88D157A0 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					EA1D4DF703873E82AB0A06CD = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					F72BFE89E20A0E43179FEC9D = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+						TestTargetID = C261E455EA7AFEDC88D157A0;
+					};
+				};
+			};
+			buildConfigurationList = D3B71D026BA46FA8D9F9D301 /* Build configuration list for PBXProject "Daybreak" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 8548C02D3DAB04A2533720CA;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 9FB5F5ACE58EA1DACBE9AD91 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C261E455EA7AFEDC88D157A0 /* Daybreak */,
+				4919B9695CD854A85EC42326 /* DaybreakMonitor */,
+				EA1D4DF703873E82AB0A06CD /* DaybreakShield */,
+				423B75BBFA507876D2E4595E /* DaybreakShieldAction */,
+				30A0A24E5308A8265D9517DA /* DaybreakTests */,
+				F72BFE89E20A0E43179FEC9D /* DaybreakUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		73A14E2D358EDDFEF985F5A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7698CC469B8C8B7AD190C731 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0862A18EA28155C099F5B854 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF65C1CDDBF57D024D733DE9 /* AppGroup.swift in Sources */,
+				31C6894A9B7586E201EF6FBB /* AppModel.swift in Sources */,
+				B88947C1C00AF8380AFAEF0B /* DayKey.swift in Sources */,
+				1FD14323E16DD8E82C6D21A6 /* DaybreakApp.swift in Sources */,
+				34CBE2FE2330AA3A95359D44 /* DaybreakSettings.swift in Sources */,
+				E566E57E20424458361B9F8B /* Formatting.swift in Sources */,
+				8285C2B86A21F60F0D3D707E /* JournalStore.swift in Sources */,
+				A049E45DE7C9622693CD5C8C /* JournalView.swift in Sources */,
+				BAEBEFE9D99159C135AA02BE /* Names.swift in Sources */,
+				84D57F425E0B29D7FE54C2DC /* OnboardingFlow.swift in Sources */,
+				66CD54AA4972219BBFE785B3 /* PickAppsView.swift in Sources */,
+				A14D8ECD74B2FB5DEF856204 /* ReflectView.swift in Sources */,
+				8C32AE23F588E168CD09D087 /* ReflectionRubric.swift in Sources */,
+				68B613E79239D083B86DD519 /* RootView.swift in Sources */,
+				05C5B917FE4AD037752144BE /* ScreenTimeGateway.swift in Sources */,
+				34C40F9D5E850079BE3530A0 /* SettingsView.swift in Sources */,
+				DA525DB4FD82F0D7195DEE13 /* ShieldApplier.swift in Sources */,
+				10ECC6AC420AB4BF516981D2 /* ShieldPolicy.swift in Sources */,
+				FE7C1FEFF603C52E0356401A /* StartTimeView.swift in Sources */,
+				325E2F3D93BFD9AF3549CE84 /* TodayView.swift in Sources */,
+				467DCF563903750AAD64B56B /* WelcomeView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13F22D8358A3304C7C6F8CB3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91BF453845FF7E8E4FBA0F6C /* JournalTests.swift in Sources */,
+				8FEEA45FB11F397616946B58 /* ReflectionRubricTests.swift in Sources */,
+				1CF91FB52D694F032A488BA7 /* ShieldPolicyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B0E4474F5DB0EED878913DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DACF102776A93882CC54D078 /* AppGroup.swift in Sources */,
+				64471290D62A6734A55F26AB /* DayKey.swift in Sources */,
+				DA44938A38C0213A199197D6 /* DaybreakSettings.swift in Sources */,
+				61E1856751E2094372516C6E /* Names.swift in Sources */,
+				AC10DB457D7C0A93A4041E8E /* ShieldActionExtension.swift in Sources */,
+				68F9728106C1B9DB1C19A1D4 /* ShieldApplier.swift in Sources */,
+				BC05E83FA8C2D5BC96893F13 /* ShieldPolicy.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E37D0BD4F9F5877F2D573B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F506C7287DBF560D20783C14 /* AppGroup.swift in Sources */,
+				A1D71BB6C55AFA90C380D63B /* DayKey.swift in Sources */,
+				7C61056A4C7AC4BC72CC80C8 /* DaybreakSettings.swift in Sources */,
+				8D700FF6997DDA52FCB8420D /* Names.swift in Sources */,
+				6C97FEDA21341AF3BF926939 /* ShieldApplier.swift in Sources */,
+				086353F2B4B909D77D769AFF /* ShieldConfigurationExtension.swift in Sources */,
+				791E1BFEE449FE9A4149354A /* ShieldPolicy.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CB7565C51682862B9CC38A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DF840493A2E5890576D997F /* DaybreakUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC823855E9265E09258DC719 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7F67EC40B1652A24A87248A /* AppGroup.swift in Sources */,
+				8E2F0513F70D5C1CDFD67F52 /* DayKey.swift in Sources */,
+				CDFED3B39BDFC7A0B77D6962 /* DaybreakSettings.swift in Sources */,
+				0A932749F7DEDE2E5CFAA1A8 /* DeviceActivityMonitorExtension.swift in Sources */,
+				3B9E95E57CD25B839A2A33CB /* Names.swift in Sources */,
+				EF2F0C6E34D0FFE5CDF6C9F5 /* ShieldApplier.swift in Sources */,
+				0ECEF75B307F4CD46B86F47A /* ShieldPolicy.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		05D8AB0ED78FFE46777DFE7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C261E455EA7AFEDC88D157A0 /* Daybreak */;
+			targetProxy = 229BBA4A0D725965BA632296 /* PBXContainerItemProxy */;
+		};
+		0A4614A97C22789A68A4143D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4919B9695CD854A85EC42326 /* DaybreakMonitor */;
+			targetProxy = E559D21E47471DB0FAE8E124 /* PBXContainerItemProxy */;
+		};
+		231F12ECE0F485781F7DC2E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA1D4DF703873E82AB0A06CD /* DaybreakShield */;
+			targetProxy = 60742A070C929C58D3ECF16F /* PBXContainerItemProxy */;
+		};
+		709E6DA62015FA868E0A89DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 423B75BBFA507876D2E4595E /* DaybreakShieldAction */;
+			targetProxy = 93BEA8A4483FFBF5C26AD682 /* PBXContainerItemProxy */;
+		};
+		E317F9EEC09DD2F0523C46B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C261E455EA7AFEDC88D157A0 /* Daybreak */;
+			targetProxy = FDB45903D5C11085F4B604E8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		08EB77417FF82BDE07C1F95F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Daybreak/Daybreak.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Daybreak/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranavgadiraju.daybreak;
+				PRODUCT_NAME = Daybreak;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		24DF4E3E08BD53D979879C1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DaybreakShield/DaybreakShield.entitlements;
+				INFOPLIST_FILE = DaybreakShield/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranavgadiraju.daybreak.shield;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2610F8215DAD5C1FC6C8A92F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranavgadiraju.daybreak.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Daybreak;
+			};
+			name = Debug;
+		};
+		3C2C8607C8FD0F2A395F3CD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DaybreakMonitor/DaybreakMonitor.entitlements;
+				INFOPLIST_FILE = DaybreakMonitor/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranavgadiraju.daybreak.monitor;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3DD72A2DB383272D52A90CE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DaybreakMonitor/DaybreakMonitor.entitlements;
+				INFOPLIST_FILE = DaybreakMonitor/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranavgadiraju.daybreak.monitor;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		46CDD09EFA68C79A24D2F963 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		47DE849FEF3914DB9767A1E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DaybreakShield/DaybreakShield.entitlements;
+				INFOPLIST_FILE = DaybreakShield/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranavgadiraju.daybreak.shield;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4A5A1D9376706BAD05A281B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DaybreakShieldAction/DaybreakShieldAction.entitlements;
+				INFOPLIST_FILE = DaybreakShieldAction/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranavgadiraju.daybreak.shieldaction;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4B212EB59F63E6FFFF946A14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranavgadiraju.daybreak.tests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Daybreak.app/Daybreak";
+			};
+			name = Release;
+		};
+		60AB2DA8D49941A40A07A048 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = DaybreakShieldAction/DaybreakShieldAction.entitlements;
+				INFOPLIST_FILE = DaybreakShieldAction/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranavgadiraju.daybreak.shieldaction;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		92376695636701F4BFD33F96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		B466CF48319FEDDE0197E4E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Daybreak/Daybreak.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Daybreak/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranavgadiraju.daybreak;
+				PRODUCT_NAME = Daybreak;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BA666D59324AAAAA7ED688A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranavgadiraju.daybreak.tests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Daybreak.app/Daybreak";
+			};
+			name = Debug;
+		};
+		DC6549B7A54513A18212229E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranavgadiraju.daybreak.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Daybreak;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		31FFFD352B3FB305995FEB46 /* Build configuration list for PBXNativeTarget "DaybreakMonitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C2C8607C8FD0F2A395F3CD9 /* Debug */,
+				3DD72A2DB383272D52A90CE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4FD67BF6D804075B5EDA8A4C /* Build configuration list for PBXNativeTarget "DaybreakTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA666D59324AAAAA7ED688A9 /* Debug */,
+				4B212EB59F63E6FFFF946A14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		640FAD1EB722719C0706E28D /* Build configuration list for PBXNativeTarget "DaybreakShieldAction" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A5A1D9376706BAD05A281B9 /* Debug */,
+				60AB2DA8D49941A40A07A048 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B6507E1FC4B2148CC4B0197B /* Build configuration list for PBXNativeTarget "DaybreakShield" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47DE849FEF3914DB9767A1E1 /* Debug */,
+				24DF4E3E08BD53D979879C1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B9FE71CA79244E5049AFAA82 /* Build configuration list for PBXNativeTarget "DaybreakUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2610F8215DAD5C1FC6C8A92F /* Debug */,
+				DC6549B7A54513A18212229E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D3B71D026BA46FA8D9F9D301 /* Build configuration list for PBXProject "Daybreak" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46CDD09EFA68C79A24D2F963 /* Debug */,
+				92376695636701F4BFD33F96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DBD3117098F429C7764FD36A /* Build configuration list for PBXNativeTarget "Daybreak" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B466CF48319FEDDE0197E4E8 /* Debug */,
+				08EB77417FF82BDE07C1F95F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 11E6449B4CE4665FF45A0413 /* Project object */;
+}
